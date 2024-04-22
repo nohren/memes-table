@@ -1,6 +1,6 @@
 {
   "name": "memes-table",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Capturing Meme's recipes and converting them to a widely distributed time resistant format.",
   "main": "index.js",
   "homepage": "https://nohren.github.io/memes-table",
