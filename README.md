@@ -38,4 +38,5 @@ JSX via React, CSS via global style sheet and styled components.
 
 ## Future designs
 
+- CICD github actions to deploy pages workflow
 - Custom domain www.memes-table.com

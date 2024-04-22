@@ -1,5 +1,15 @@
 /* global css file */
 
-/* .test {
-  background-color: red;
-} */
+/* Source Code Pro*/
+@font-face {
+  font-family: 'SourceCodePro';
+  src: url('./fonts/SourceCodePro-VariableFont_wght.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'SourceCodePro', sans-serif;
+  background-color: #1c2e3b;
+  color: white;
+}
