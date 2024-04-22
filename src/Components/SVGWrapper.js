@@ -6,20 +6,20 @@ const IconButton = styled.button``;
 const IconDiv = styled.div``;
 
 export default function SVGWrapper(props) {
-  const { name, button = false } = props;
+  const { name, button = false, onClick } = props;
 
   const Icon = SVGStore[name] ?? console.error('Icon not found');
 
   let IconEl;
   if (button) {
     IconEl = (
-      <IconButton>
+      <IconButton onClick={onClick}>
         <Icon />
       </IconButton>
     );
   } else {
     IconEl = (
-      <IconDiv>
+      <IconDiv onClick={onClick}>
         <Icon />
       </IconDiv>
     );
