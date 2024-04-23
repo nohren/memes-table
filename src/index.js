@@ -1,12 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './Components/App';
+import App from './components/App';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
-import ErrorPage from './Components/ErrorPage';
-import Home from './Components/Home';
-import About from './Components/About';
-import Recipes from './Components/Recipes';
-import HolidayMenu from './Components/HolidayMenu';
+import ErrorPage from './components/ErrorPage';
+import Home from './components/Home';
+import About from './components/About';
+import Recipes from './components/Recipes';
+import HolidayMenu from './components/HolidayMenu';
 
 /**
  * Webpack will come through and replace process.env.NODE_ENV with proper value at compilation time

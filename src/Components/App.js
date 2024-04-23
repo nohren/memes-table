@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import NavMenu from './NavMenu';
 import SearchBox from './SearchBox';
 import { Outlet } from 'react-router-dom';
+import { menuItems } from '../store/store';
 
 const AppContainer = styled.div``;
 const ViewContainer = styled.div``;
@@ -14,28 +15,6 @@ const Centered = styled.h1`
 const Menu = styled.div`
   display: flex;
 `;
-
-/**
- * Routing architecture
- * Initial load we land on home page, clicking on other apps we change route
- *
- * Home is the root page.
- *
- * Questions to answer
- *
- * How to switch pages via click?
- *
- * add an outlet here for rendering the components
- *
- */
-
-//needs work to describe routes, should be name and path
-const menuItems = [
-  { name: 'Home', path: '/' },
-  { name: 'Recipes', path: '/recipes' },
-  { name: "Sample Holiday Menu's", path: '/holiday' },
-  { name: 'About', path: '/about' },
-];
 
 export default function App() {
   return (
