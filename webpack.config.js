@@ -11,6 +11,7 @@ module.exports = {
     static: './devServer',
     port: 3000,
     open: true,
+    historyApiFallback: true,
   },
   devtool: 'inline-source-map',
   module: {
