@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavContainer = styled.div`
@@ -8,15 +9,22 @@ const NavContainer = styled.div`
 `;
 const MenuItem = styled.div`
   cursor: pointer;
+  color: white;
+  &:hover {
+    color: gold;
+  }
 `;
 
 export default function NavMenu(props) {
+  const navigate = useNavigate();
+  const { menuItems } = props;
   return (
     <NavContainer>
-      <MenuItem>Home</MenuItem>
-      <MenuItem>Recipes</MenuItem>
-      <MenuItem>Sample Holiday Menu's</MenuItem>
-      <MenuItem>About</MenuItem>
+      {menuItems.map((item) => (
+        <MenuItem key={item}>
+          <div onClick={() => navigate(item.toLowerCase())}>{item}</div>
+        </MenuItem>
+      ))}
     </NavContainer>
   );
 }
