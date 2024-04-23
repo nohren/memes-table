@@ -30,7 +30,12 @@ const Menu = styled.div`
  */
 
 //needs work to describe routes, should be name and path
-const menuItems = ['Home', 'Recipes', "Sample Holiday Menu's", 'About'];
+const menuItems = [
+  { name: 'Home', path: '/' },
+  { name: 'Recipes', path: '/recipes' },
+  { name: "Sample Holiday Menu's", path: '/holidaymenu' },
+  { name: 'About', path: '/about' },
+];
 
 export default function App() {
   return (

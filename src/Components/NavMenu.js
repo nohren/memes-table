@@ -21,8 +21,8 @@ export default function NavMenu(props) {
   return (
     <NavContainer>
       {menuItems.map((item) => (
-        <MenuItem key={item}>
-          <div onClick={() => navigate(item.toLowerCase())}>{item}</div>
+        <MenuItem key={item.name}>
+          <div onClick={() => navigate(item.path)}>{item.name}</div>
         </MenuItem>
       ))}
     </NavContainer>
