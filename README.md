@@ -2,6 +2,8 @@
 
 Capturing Meme's recipes and converting them to a widely distributed time resistant format.
 
+https://nohren.github.io/memes-table
+
 ## Contributors
 
 - Kristina
@@ -34,7 +36,7 @@ JSX via React, CSS via global style sheet and styled components.
 
 1. Predeploy `npm run predeploy`
 2. Deploy `npm run deploy`
-3. Check it out at https://nohren.github.io/memes-table/
+3. Check it out at https://nohren.github.io/memes-table
 
 ## Future designs
 

@@ -10,7 +10,6 @@ const AppContainer = styled.div``;
 const ViewContainer = styled.div``;
 const Centered = styled.h1`
   text-align: center;
-  border-bottom: 1px solid white;
 `;
 const Menu = styled.div`
   display: flex;
