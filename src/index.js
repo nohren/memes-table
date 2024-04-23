@@ -11,7 +11,7 @@ const root = createRoot(container);
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-console.log('isProduction: ', isProduction);
+console.log(`Web app is in ${process.env.NODE_ENV} mode 🚀`);
 
 // Set the basename only in production for github pages
 const basename = isProduction ? '/memes-table' : '';
