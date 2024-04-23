@@ -11,7 +11,7 @@ module.exports = {
     static: './devServer',
     port: 3000,
     open: true,
-    historyApiFallback: true,
+    // historyApiFallback: true, //for use in browser routing, to fallback to root url (no pathname... this is where index.html is found and where the script tag where react router is loaded is found), when pathname on server doesn't exist.  Otherwise we are returning a 404.html from the server. The bane of Single Page Application existence.
   },
   devtool: 'inline-source-map',
   module: {
