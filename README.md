@@ -27,14 +27,14 @@ JSX via React, CSS via global style sheet and styled components.
 ## Local development
 
 1. Serve project - `npm run start`
-2. Open the browser and navigate to `http://localhost:3000`. Note, I changed the port to 3000 since 8080 conflicts with Mac OS Sonoma and greater.
+2. Open the browser and navigate to http://localhost:3000. Note, I changed the port to 3000 since 8080 conflicts with Mac OS Sonoma and greater.
 3. Start work - Locate ./SRC directory and modify JS/CSS files within there.
 
 ## Deployment
 
 1. Predeploy `npm run predeploy`
 2. Deploy `npm run deploy`
-3. Check it out at `https://nohren.github.io/memes-table/`
+3. Check it out at https://nohren.github.io/memes-table/
 
 ## Future designs
 
