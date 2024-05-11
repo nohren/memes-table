@@ -11,7 +11,7 @@ const MenuItem = styled.div`
   cursor: pointer;
   color: white;
   &:hover {
-    color: gold;
+    color: darkturquoise;
   }
 `;
 
