@@ -32,6 +32,31 @@ JSX via React, CSS via global style sheet and styled components.
 2. Open the browser and navigate to http://localhost:3000. Note, I changed the port to 3000 since 8080 conflicts with Mac OS Sonoma and greater.
 3. Start work - Locate ./SRC directory and modify JS/CSS files within there.
 
+### Git Workflow
+
+Git is our version control system and a safeguard when writing code.
+
+We will use a feature branch workflow.
+At the beginning of a new feature:
+
+- checkout the main branch and pull the latest code.
+- Then checkout a new branch to work from.
+- When finished with your work, commit your desired changes and push to this same branch you are working from.
+- Then open a Pull Request (PR) in github.com and ask for review.
+
+### Git commands
+
+- `git status` - checks the status of the workspace
+- `git log` - checks the git history. You can see a list of commits in descending order for that branch.
+- `git checkout -b <newbranchname>` - creates a new branch and changes the current git branch to this new branch.
+- `git checkout <branchname>` - changes the current git branch to this existing branch.
+- `git add <filename | .>` - adds file changes to the staging area of the current branch. Use `.` to stage all files.
+- `git restore --staged <filename | .>` - removes file changes from the staging area of the current branch. Use `.` to remove all staged file changes. Your changes will now exist as unstaged changes.
+- `git restore <filename | .>` - removes file changes from the current branch. Use `.` to remove all file changes. Any unstaged changes will be lost.
+- `git commit -m "your message here"` - commits the staged changes to git history as a new commit with the -m message option.
+- `git pull origin <branchname>` - fetches and merges the latest code with the specified branch. Do this from main branch when starting a new feature to incorporate others changes.
+- `git push origin <branchname>` - pushes your code to the git server for all to share
+
 ## Deployment
 
 1. Predeploy `npm run predeploy`
