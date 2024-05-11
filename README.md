@@ -42,7 +42,7 @@ At the beginning of a new feature:
 - checkout the main branch and pull the latest code.
 - Then checkout a new branch to work from.
 - When finished with your work, commit your desired changes and push to this same branch you are working from.
-- Then open a Pull Request (PR) in github.com and ask for review.
+- Then open a Pull Request (PR) in github.com comparing your new branch with main branch and ask for review.
 
 ### Git commands
 
