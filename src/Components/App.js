@@ -51,7 +51,7 @@ export default function App() {
       <BackgroundImageContainer url={pic}></BackgroundImageContainer>
       <BackgroundContainerBottom></BackgroundContainerBottom>
       <ViewContainer>
-        <Outlet />
+        <Outlet context={{theme: 'light'}}/>
       </ViewContainer>
     </AppContainer>
   );
