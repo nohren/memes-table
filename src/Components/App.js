@@ -6,8 +6,12 @@ import SearchBox from './SearchBox';
 import { Outlet } from 'react-router-dom';
 import { menuItems } from '../store/store';
 
-const pic =
-  'https://github.com/nohren/memes-table/blob/main/src/assets/images/memes-table.jpeg?raw=true';
+export const pictures = {
+  aboutPage:
+    'https://github.com/nohren/memes-table/blob/main/src/assets/images/memes-table.jpeg?raw=true',
+  memeStash:
+    'https://github.com/nohren/memes-table/blob/main/src/assets/images/memes-stash.png?raw=true',
+};
 
 const AppContainer = styled.div``;
 const BackgroundImageContainer = styled.div`
@@ -48,7 +52,9 @@ export default function App() {
         <SearchBox />
       </Menu>
       <BackgroundContainerTop></BackgroundContainerTop>
-      <BackgroundImageContainer url={pic}></BackgroundImageContainer>
+      <BackgroundImageContainer
+        url={pictures.aboutPage}
+      ></BackgroundImageContainer>
       <BackgroundContainerBottom></BackgroundContainerBottom>
       <ViewContainer>
         <Outlet context={{theme: 'light'}}/>
