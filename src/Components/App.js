@@ -7,7 +7,7 @@ import { Outlet } from 'react-router-dom';
 import { menuItems } from '../store/store';
 
 const pic =
-  'https://github.com/nohren/memes-table/blob/main/public/images/memes-table.jpeg?raw=true';
+  'https://github.com/nohren/memes-table/blob/main/src/assets/images/memes-table.jpeg?raw=true';
 
 const AppContainer = styled.div``;
 const BackgroundImageContainer = styled.div`
