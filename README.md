@@ -6,19 +6,22 @@ https://nohren.github.io/memes-table
 
 ## Contributors
 
-- Kristina
-- Oren
-- Josh
+...
 
 ## Architecture
 
-This project is meant to be lightweight, simple, and sustainable.
+This project is meant to be lightweight, simple, sustainable and free. As such there is no backend, no database, no server. It does as much as currently possible with static and freely hosted content using GitHub Pages to host the main bundle.
 
 Setup is via
 https://www.freecodecamp.org/news/how-to-set-up-deploy-your-react-app-from-scratch-using-webpack-and-babel-a669891033d4/
 
-Project uses:
+Project archive functionality uses:
 JSX via React, CSS via global style sheet and styled components.
+
+Future plans include:
+
+- Archive all recipes.
+- Add an AI agent, a knowledgeable protoge of Meme as a real time cooking assistant.
 
 ## Setup
 
@@ -31,6 +34,17 @@ JSX via React, CSS via global style sheet and styled components.
 1. Serve project - `npm run start`
 2. Open the browser and navigate to http://localhost:3000. Note, I changed the port to 3000 since 8080 conflicts with Mac OS Sonoma and greater.
 3. Start work - Locate ./SRC directory and modify JS/CSS files within there.
+
+## Deployment
+
+1. Predeploy `npm run predeploy`
+2. Deploy `npm run deploy`
+3. Check it out at https://nohren.github.io/memes-table
+
+## Future designs
+
+- CICD github actions to deploy pages workflow
+- deploy to custom domain
 
 ### Git Workflow
 
@@ -56,14 +70,3 @@ At the beginning of a new feature:
 - `git commit -m "your message here"` - commits the staged changes to git history as a new commit with the -m message option.
 - `git pull origin <branchname>` - fetches and merges the latest code with the specified branch. Do this from main branch when starting a new feature to incorporate others changes.
 - `git push origin <branchname>` - pushes your code to the git server for all to share
-
-## Deployment
-
-1. Predeploy `npm run predeploy`
-2. Deploy `npm run deploy`
-3. Check it out at https://nohren.github.io/memes-table
-
-## Future designs
-
-- CICD github actions to deploy pages workflow
-- Custom domain www.memes-table.com

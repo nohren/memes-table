@@ -2,21 +2,31 @@ import React from 'react';
 import { useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
+// Styled component for encapsulation
+// Write native css here
 const MyStyledComponent = styled.div`
   border: 2px dotted green;
-`
+  margin-top: 20px;
+`;
 
-const NewComponents = (props) => {
-  const someJS = new Date().toDateString()
-  return <MyStyledComponent>{props.text} And the time is {someJS}</MyStyledComponent>
-}
+const Encapsulation = (props) => {
+  const someJS = new Date().toDateString();
+  return (
+    <MyStyledComponent>
+      {props.text}. The time is {someJS} from inside the encapsulated component.
+    </MyStyledComponent>
+  );
+};
 
 export default function Home() {
   const { theme } = useOutletContext();
 
-  const text = 'hey yo i\'m learning react'
+  const text = 'This text is a prop passed to the encapsulated component.';
 
-  return <div>yo I'm home {theme}
-    <NewComponents text={"boyyyyyy I'm a turtle"} />
-  </div>;
+  return (
+    <div>
+      This is the chat page. The theme is {theme}.
+      <Encapsulation text={text} />
+    </div>
+  );
 }

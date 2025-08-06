@@ -49,7 +49,7 @@ export default function App() {
       <Centered>Meme's Table</Centered>
       <Menu>
         <NavMenu menuItems={menuItems} />
-        <SearchBox />
+        {/* <SearchBox /> */}
       </Menu>
       <BackgroundContainerTop></BackgroundContainerTop>
       <BackgroundImageContainer
@@ -57,7 +57,7 @@ export default function App() {
       ></BackgroundImageContainer>
       <BackgroundContainerBottom></BackgroundContainerBottom>
       <ViewContainer>
-        <Outlet context={{theme: 'light'}}/>
+        <Outlet context={{ theme: 'light' }} />
       </ViewContainer>
     </AppContainer>
   );

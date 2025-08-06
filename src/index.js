@@ -5,6 +5,8 @@ import { createHashRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home';
 import About from './components/About';
+import Archive from './components/Archive';
+``;
 import Recipes from './components/Recipes';
 import HolidayMenu from './components/HolidayMenu';
 
@@ -28,16 +30,12 @@ const router = createHashRouter(
           index: true,
         },
         {
-          path: '/recipes',
-          element: <Recipes />,
-        },
-        {
-          path: '/holiday',
-          element: <HolidayMenu />,
-        },
-        {
           path: '/about',
           element: <About />,
+        },
+        {
+          path: '/archive',
+          element: <Archive />,
         },
       ],
     },
