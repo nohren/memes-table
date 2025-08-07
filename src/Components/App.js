@@ -2,15 +2,8 @@ import '../index.css';
 import React from 'react';
 import styled from 'styled-components';
 import NavMenu from './NavMenu';
-import SearchBox from './SearchBox';
 import { Outlet } from 'react-router-dom';
 import { menuItems } from '../store/store';
-
-export const pictures = {
-  aboutPage: './assets/images/memes-table.jpeg', // getting copied from public/assets/images
-  memeStash:
-    'https://github.com/nohren/memes-table/blob/main/src/assets/images/memes-stash.png?raw=true',
-};
 
 const AppContainer = styled.div``;
 const BackgroundImageContainer = styled.div`
@@ -52,7 +45,7 @@ export default function App() {
   return (
     <AppContainer>
       <Centered>
-        Meme's Table
+        Assouli Kitchen
         <Construction>Page under construction 🚧</Construction>
       </Centered>
       <Menu>
@@ -61,7 +54,7 @@ export default function App() {
       </Menu>
       <BackgroundContainerTop></BackgroundContainerTop>
       <BackgroundImageContainer
-        url={pictures.aboutPage}
+        url={'./assets/images/memes-table.jpeg'}
       ></BackgroundImageContainer>
       <BackgroundContainerBottom></BackgroundContainerBottom>
       <ViewContainer>

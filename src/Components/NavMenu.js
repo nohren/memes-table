@@ -5,16 +5,18 @@ import styled from 'styled-components';
 const NavContainer = styled.div`
   display: flex;
 `;
-const MenuItem = styled.div`
+export const ClickableElement = styled.div`
   cursor: pointer;
   color: white;
-  margin: 0 0.75rem;
-  font-weight: 500;
   opacity: 0.9;
 
   &:hover {
     color: darkturquoise;
   }
+`;
+
+const Spacing = styled.div`
+  margin: 0 0.75rem;
 `;
 
 export default function NavMenu(props) {
@@ -23,9 +25,11 @@ export default function NavMenu(props) {
   return (
     <NavContainer>
       {menuItems.map((item) => (
-        <MenuItem key={item.name}>
-          <div onClick={() => navigate(item.path)}>{item.name}</div>
-        </MenuItem>
+        <Spacing key={item.name}>
+          <ClickableElement key={item.name}>
+            <div onClick={() => navigate(item.path)}>{item.name}</div>
+          </ClickableElement>
+        </Spacing>
       ))}
     </NavContainer>
   );

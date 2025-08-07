@@ -23,12 +23,5 @@ const Encapsulation = (props) => {
 export default function Chat() {
   const { theme } = useOutletContext();
 
-  const text = 'This text is a prop passed to the encapsulated component.';
-
-  return (
-    <div>
-      This is the chat page. The theme is {theme}.
-      <Encapsulation text={text} />
-    </div>
-  );
+  return <div>This is the chat page.</div>;
 }

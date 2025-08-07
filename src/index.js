@@ -7,7 +7,7 @@ import Chat from './Components/Chat';
 import About from './components/About';
 import Archive from './components/Archive';
 import { Navigate } from 'react-router-dom';
-import Recipes from './components/Recipes';
+import RecipeDetail from './Components/RecipeDetail';
 
 /**
  * Webpack will come through and replace process.env.NODE_ENV with proper value at compilation time
@@ -25,7 +25,7 @@ const router = createHashRouter(
       errorElement: <ErrorPage />,
       children: [
         {
-          element: <Navigate to="/chat" replace />,
+          element: <Navigate to="/about" replace />,
           index: true,
         },
         {
@@ -41,8 +41,8 @@ const router = createHashRouter(
           element: <Archive />,
         },
         {
-          path: '/recipes',
-          element: <Recipes />,
+          path: '/recipe/:id',
+          element: <RecipeDetail />,
         },
       ],
     },
