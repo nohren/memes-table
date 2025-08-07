@@ -10,15 +10,17 @@ const MyStyledComponent = styled.div`
 `;
 
 const Encapsulation = (props) => {
+  console.log(props);
   const someJS = new Date().toDateString();
   return (
     <MyStyledComponent>
-      {props.text}. The time is {someJS} from inside the encapsulated component.
+      {props.text}. The time is {someJS} calculated from inside the encapsulated
+      component.
     </MyStyledComponent>
   );
 };
 
-export default function Home() {
+export default function Chat() {
   const { theme } = useOutletContext();
 
   const text = 'This text is a prop passed to the encapsulated component.';

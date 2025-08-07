@@ -43,10 +43,19 @@ const Menu = styled.div`
   display: flex;
 `;
 
+const Construction = styled.div`
+  color: yellow;
+  font-size: 0.5em;
+  margin-top: 20px;
+`;
+
 export default function App() {
   return (
     <AppContainer>
-      <Centered>Meme's Table</Centered>
+      <Centered>
+        Meme's Table
+        <Construction>Page under construction 🚧</Construction>
+      </Centered>
       <Menu>
         <NavMenu menuItems={menuItems} />
         {/* <SearchBox /> */}

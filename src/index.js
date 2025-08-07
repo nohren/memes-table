@@ -3,9 +3,11 @@ import { createRoot } from 'react-dom/client';
 import App from './components/App';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
-import Home from './components/Home';
+import Chat from './Components/Chat';
 import About from './components/About';
 import Archive from './components/Archive';
+import { Navigate } from 'react-router-dom';
+
 ``;
 import Recipes from './components/Recipes';
 import HolidayMenu from './components/HolidayMenu';
@@ -26,8 +28,12 @@ const router = createHashRouter(
       errorElement: <ErrorPage />,
       children: [
         {
-          element: <Home />,
+          element: <Navigate to="/chat" replace />,
           index: true,
+        },
+        {
+          path: '/chat',
+          element: <Chat />,
         },
         {
           path: '/about',
