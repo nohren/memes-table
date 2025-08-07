@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = (_env, argv) => {
   const prod = argv.mode === 'production';
@@ -9,6 +10,7 @@ module.exports = (_env, argv) => {
   );
   return {
     entry: './src/index.js',
+    // output publishes the bundle to the dist folder. These files are uploaded to the server.  The client must ask for these files with relative paths.  The paths are different in production and development.
     output: {
       path: path.join(__dirname, './dist'),
       publicPath: prod ? './' : '/',
@@ -23,8 +25,16 @@ module.exports = (_env, argv) => {
     plugins: [
       prod ? new CleanWebpackPlugin() : null,
       new HtmlWebpackPlugin({
-        template: './public/index.html', // your source HTML
+        template: 'index.html', // your source HTML
         filename: 'index.html', // output
+      }),
+      new CopyWebpackPlugin({
+        patterns: [
+          {
+            from: path.resolve(__dirname, 'public'),
+            to: path.resolve(__dirname, 'dist'),
+          },
+        ],
       }),
     ],
     module: {

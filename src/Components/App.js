@@ -7,8 +7,7 @@ import { Outlet } from 'react-router-dom';
 import { menuItems } from '../store/store';
 
 export const pictures = {
-  aboutPage:
-    'https://github.com/nohren/memes-table/blob/main/src/assets/images/memes-table.jpeg?raw=true',
+  aboutPage: './assets/images/memes-table.jpeg', // getting copied from public/assets/images
   memeStash:
     'https://github.com/nohren/memes-table/blob/main/src/assets/images/memes-stash.png?raw=true',
 };
