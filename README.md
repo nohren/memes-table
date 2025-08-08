@@ -38,7 +38,7 @@ Future plans include:
 ## Deployment
 
 1. Predeploy `npm run predeploy`
-2. Deploy `npm run deploy`
+2. Deploy `npm run deploy` - it takes about a minute to deploy to github pages.
 3. Check it out at https://nohren.github.io/memes-table
 
 ## Future designs
