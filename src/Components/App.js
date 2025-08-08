@@ -4,8 +4,10 @@ import styled from 'styled-components';
 import NavMenu from './NavMenu';
 import { Outlet } from 'react-router-dom';
 import { menuItems } from '../store/store';
+import { TextContainer } from '../utils/sharedCSS'; // Adjust the import path as necessary
 
 const AppContainer = styled.div``;
+
 const BackgroundImageContainer = styled.div`
   background-image: url('${({ url }) => url}');
   background-size: cover;
@@ -45,7 +47,7 @@ export default function App() {
   return (
     <AppContainer>
       <Centered>
-        Assouli Kitchen
+        Voices of Mimouna
         <Construction>Page under construction 🚧</Construction>
       </Centered>
       <Menu>

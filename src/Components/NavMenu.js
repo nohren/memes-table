@@ -1,22 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { ClickableElement } from '../utils/sharedCSS'; // Adjust the import path as necessary
 
 const NavContainer = styled.div`
   display: flex;
 `;
-export const ClickableElement = styled.div`
-  cursor: pointer;
-  color: white;
-  opacity: 0.9;
-
-  &:hover {
-    color: darkturquoise;
-  }
-`;
 
 const Spacing = styled.div`
   margin: 0 0.75rem;
+  font-size: 1.5rem;
 `;
 
 export default function NavMenu(props) {

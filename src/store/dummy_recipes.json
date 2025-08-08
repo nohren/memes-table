@@ -1,0 +1,582 @@
+[
+  {
+    "id": "recipe_001",
+    "dish": "Mufleta",
+    "variant": "Grandma Sara's",
+    "origin": "Traditionally served at Mimouna, marking the end of Passover in Moroccan Jewish homes.",
+    "title": "🥞 Mufleta (Grandma Sara's)",
+    "description": "Soft, chewy Moroccan pancakes served warm with honey.",
+    "image": "./assets/images/mufleta-sara.jpg",
+    "prep_time": "1 hour",
+    "cook_time": "20 minutes",
+    "servings": 12,
+    "tags": ["bread", "mimouna", "traditional"],
+    "ingredients": [
+      "1 kg flour",
+      "2 tbsp sugar",
+      "2 tsp salt",
+      "2 cups warm water",
+      "1/4 cup vegetable oil",
+      "Butter and honey for serving"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "instruction": "Mix flour, sugar, and salt in a large bowl."
+      },
+      {
+        "step_number": 2,
+        "instruction": "Add warm water gradually, kneading until smooth."
+      },
+      {
+        "step_number": 3,
+        "instruction": "Form balls, coat with oil, rest 30 min."
+      },
+      {
+        "step_number": 4,
+        "instruction": "Flatten and cook each side until golden."
+      }
+    ],
+    "notes": "Stack mufletas with butter to keep soft.",
+    "author": "Sara",
+    "created_at": "2024-04-20"
+  },
+  {
+    "id": "recipe_002",
+    "dish": "Mufleta",
+    "variant": "Cousin Rachel's Quick Version",
+    "origin": "A modern, quicker take for busy families celebrating Mimouna.",
+    "title": "🥞 Mufleta (Quick Version)",
+    "description": "Fast and simple Moroccan pancakes for Mimouna.",
+    "image": "./assets/images/mufleta-quick.jpg",
+    "prep_time": "30 minutes",
+    "cook_time": "15 minutes",
+    "servings": 10,
+    "tags": ["bread", "quick", "mimouna"],
+    "ingredients": [
+      "500g self-rising flour",
+      "1 tsp salt",
+      "1 cup warm water",
+      "Oil for cooking"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Mix all ingredients to form dough." },
+      { "step_number": 2, "instruction": "Rest 10 min, roll into discs." },
+      { "step_number": 3, "instruction": "Cook on skillet until golden." }
+    ],
+    "notes": "Texture is lighter but flavor is still authentic.",
+    "author": "Rachel",
+    "created_at": "2024-05-15"
+  },
+  {
+    "id": "recipe_003",
+    "dish": "Sfenj",
+    "variant": "Street Market Style",
+    "origin": "Sold in Moroccan medinas as a breakfast treat with mint tea.",
+    "title": "🍩 Sfenj (Moroccan Doughnuts)",
+    "description": "Crispy outside, fluffy inside.",
+    "image": "./assets/images/sfenj.jpg",
+    "prep_time": "1h 30m",
+    "cook_time": "20 minutes",
+    "servings": 8,
+    "tags": ["dessert", "fried", "street food"],
+    "ingredients": [
+      "500g flour",
+      "10g yeast",
+      "1 tsp salt",
+      "1 tbsp sugar",
+      "Warm water",
+      "Oil for frying"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Mix flour, yeast, sugar, salt." },
+      { "step_number": 2, "instruction": "Add water to make sticky dough." },
+      { "step_number": 3, "instruction": "Rise 1 hour." },
+      { "step_number": 4, "instruction": "Shape rings, fry until golden." }
+    ],
+    "notes": "Best eaten fresh.",
+    "author": "David",
+    "created_at": "2024-06-10"
+  },
+  {
+    "id": "recipe_004",
+    "dish": "Couscous",
+    "variant": "Chicken and Vegetable",
+    "origin": "Friday family lunch in Moroccan households.",
+    "title": "🍲 Couscous with Chicken and Vegetables",
+    "description": "Fluffy couscous topped with rich chicken broth and vegetables.",
+    "image": "./assets/images/couscous-chicken.jpg",
+    "prep_time": "45 minutes",
+    "cook_time": "1 hour",
+    "servings": 10,
+    "tags": ["main", "shabbat", "traditional"],
+    "ingredients": [
+      "1 whole chicken",
+      "2 cups couscous",
+      "Carrots, zucchini, pumpkin, chickpeas",
+      "Spices: turmeric, ginger, cinnamon"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Brown chicken in spices." },
+      { "step_number": 2, "instruction": "Add vegetables, water; simmer." },
+      { "step_number": 3, "instruction": "Steam couscous over broth." }
+    ],
+    "notes": "Lamb variation is richer.",
+    "author": "Meme",
+    "created_at": "2024-03-22"
+  },
+  {
+    "id": "recipe_005",
+    "dish": "Chicken with Olives",
+    "variant": "Preserved Lemon",
+    "origin": "A signature Moroccan tagine dish served at celebrations.",
+    "title": "🍋 Chicken with Olives and Preserved Lemon",
+    "description": "Bright, savory tagine with tender chicken.",
+    "image": "./assets/images/chicken-olives.jpg",
+    "prep_time": "20 minutes",
+    "cook_time": "1h 20m",
+    "servings": 6,
+    "tags": ["main", "tagine", "traditional"],
+    "ingredients": [
+      "1 chicken, cut",
+      "1 preserved lemon",
+      "Green olives",
+      "Garlic, onions, saffron, ginger"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Sauté onions, garlic in oil." },
+      { "step_number": 2, "instruction": "Brown chicken with spices." },
+      { "step_number": 3, "instruction": "Add lemon, olives, simmer." }
+    ],
+    "notes": "Serve with fresh bread.",
+    "author": "Meme",
+    "created_at": "2024-01-12"
+  },
+  {
+    "id": "recipe_006",
+    "dish": "Beef Tagine",
+    "variant": "Prunes and Almonds",
+    "origin": "Served at weddings for its sweet-savory symbolism.",
+    "title": "🥘 Beef Tagine with Prunes and Almonds",
+    "description": "Tender beef in a sweet prune sauce.",
+    "image": "./assets/images/beef-prunes.jpg",
+    "prep_time": "30 minutes",
+    "cook_time": "2 hours",
+    "servings": 8,
+    "tags": ["main", "holiday", "tagine"],
+    "ingredients": [
+      "1kg beef",
+      "2 cups prunes",
+      "1 cup almonds",
+      "Cinnamon, saffron, ginger"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Brown beef in spices." },
+      { "step_number": 2, "instruction": "Add water, simmer until tender." },
+      { "step_number": 3, "instruction": "Add prunes, almonds before serving." }
+    ],
+    "notes": "Serve with couscous or bread.",
+    "author": "Miriam",
+    "created_at": "2023-12-05"
+  },
+  {
+    "id": "recipe_007",
+    "dish": "Harira",
+    "variant": "Ramadan Style",
+    "origin": "Traditional soup to break the fast during Ramadan.",
+    "title": "🥣 Harira Soup",
+    "description": "Rich tomato and lentil soup.",
+    "image": "./assets/images/harira.jpg",
+    "prep_time": "20 minutes",
+    "cook_time": "1 hour",
+    "servings": 6,
+    "tags": ["soup", "ramadan", "comfort"],
+    "ingredients": [
+      "Lamb pieces",
+      "Tomatoes, lentils, chickpeas",
+      "Celery, onions",
+      "Coriander, parsley"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Cook lamb with onions, spices." },
+      { "step_number": 2, "instruction": "Add tomatoes, legumes, simmer." },
+      { "step_number": 3, "instruction": "Finish with fresh herbs." }
+    ],
+    "notes": "Serve with dates and chebakia.",
+    "author": "Youssef",
+    "created_at": "2024-03-10"
+  },
+  {
+    "id": "recipe_008",
+    "dish": "Fish Chraimeh",
+    "variant": "Spicy Shabbat",
+    "origin": "Sephardic Jews serve this on Friday night as a starter.",
+    "title": "🌶️ Fish Chraimeh",
+    "description": "Spicy tomato sauce with tender fish fillets.",
+    "image": "./assets/images/chraimeh.jpg",
+    "prep_time": "15 minutes",
+    "cook_time": "40 minutes",
+    "servings": 6,
+    "tags": ["fish", "shabbat", "spicy"],
+    "ingredients": [
+      "6 fish fillets",
+      "Tomatoes, garlic, paprika, cumin",
+      "Chili peppers, cilantro"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Sauté garlic, chili in oil." },
+      { "step_number": 2, "instruction": "Add tomatoes, spices, simmer." },
+      { "step_number": 3, "instruction": "Add fish, cook gently." }
+    ],
+    "notes": "Best with challah bread.",
+    "author": "Amram",
+    "created_at": "2024-02-02"
+  },
+  {
+    "id": "recipe_009",
+    "dish": "Challah",
+    "variant": "Moroccan Sweet",
+    "origin": "Softer and sweeter than Ashkenazi versions, often with anise.",
+    "title": "🍞 Moroccan Sweet Challah",
+    "description": "Golden braided bread for Shabbat.",
+    "image": "./assets/images/challah.jpg",
+    "prep_time": "2 hours",
+    "cook_time": "30 minutes",
+    "servings": 8,
+    "tags": ["bread", "shabbat", "sweet"],
+    "ingredients": [
+      "1kg flour",
+      "1/2 cup sugar",
+      "2 tbsp anise seeds",
+      "4 eggs",
+      "1 cup warm water",
+      "Yeast"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "instruction": "Mix dry ingredients, add eggs, water."
+      },
+      { "step_number": 2, "instruction": "Knead, rise 1h." },
+      {
+        "step_number": 3,
+        "instruction": "Braid, rise again, bake until golden."
+      }
+    ],
+    "notes": "Sprinkle sesame seeds before baking.",
+    "author": "Leah",
+    "created_at": "2024-03-01"
+  },
+  {
+    "id": "recipe_010",
+    "dish": "Matbucha",
+    "variant": "Slow-Cooked Tomato & Pepper",
+    "origin": "Served as part of the Moroccan salatim spread at Shabbat and holidays.",
+    "title": "🍅 Matbucha",
+    "description": "Sweet, smoky tomato and pepper salad cooked to perfection.",
+    "image": "./assets/images/matbucha.jpg",
+    "prep_time": "20 minutes",
+    "cook_time": "2 hours",
+    "servings": 6,
+    "tags": ["salad", "starter", "shabbat"],
+    "ingredients": [
+      "6 ripe tomatoes",
+      "4 red bell peppers",
+      "4 cloves garlic",
+      "1/4 cup olive oil",
+      "Salt, paprika, chili flakes"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Roast peppers, peel skin." },
+      { "step_number": 2, "instruction": "Grate tomatoes, remove seeds." },
+      {
+        "step_number": 3,
+        "instruction": "Cook tomatoes, peppers, garlic in oil for 2 hours on low."
+      }
+    ],
+    "notes": "The slower you cook, the sweeter it becomes.",
+    "author": "Rina",
+    "created_at": "2024-02-18"
+  },
+  {
+    "id": "recipe_011",
+    "dish": "Zaalouk",
+    "variant": "Smoky Eggplant",
+    "origin": "A staple in Moroccan mezze, often eaten with fresh bread.",
+    "title": "🍆 Zaalouk",
+    "description": "Smoky, garlicky eggplant-tomato dip.",
+    "image": "./assets/images/zaalouk.jpg",
+    "prep_time": "15 minutes",
+    "cook_time": "30 minutes",
+    "servings": 4,
+    "tags": ["starter", "eggplant", "mezze"],
+    "ingredients": [
+      "2 large eggplants",
+      "3 tomatoes",
+      "4 cloves garlic",
+      "Olive oil",
+      "Paprika, cumin, salt"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "instruction": "Roast or char eggplants until soft."
+      },
+      { "step_number": 2, "instruction": "Peel and mash eggplants." },
+      {
+        "step_number": 3,
+        "instruction": "Cook tomatoes, garlic, spices in oil; mix with eggplant."
+      }
+    ],
+    "notes": "Serve warm or at room temperature.",
+    "author": "Esther",
+    "created_at": "2024-03-09"
+  },
+  {
+    "id": "recipe_012",
+    "dish": "Chebakia",
+    "variant": "Honey-Sesame Ramadan Treat",
+    "origin": "Made during Ramadan to serve alongside harira soup.",
+    "title": "🍯 Chebakia",
+    "description": "Flower-shaped fried cookies soaked in honey.",
+    "image": "./assets/images/chebakia.jpg",
+    "prep_time": "1h 30m",
+    "cook_time": "30 minutes",
+    "servings": 20,
+    "tags": ["dessert", "ramadan", "honey"],
+    "ingredients": [
+      "1kg flour",
+      "1 cup sesame seeds",
+      "1 tbsp cinnamon",
+      "1 tsp anise powder",
+      "1/2 cup orange blossom water",
+      "Honey for soaking"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "instruction": "Mix dough with spices and orange blossom water."
+      },
+      { "step_number": 2, "instruction": "Shape into flowers." },
+      { "step_number": 3, "instruction": "Fry, then soak in warm honey." }
+    ],
+    "notes": "Sprinkle sesame seeds after honey soak.",
+    "author": "Meme",
+    "created_at": "2024-03-25"
+  },
+  {
+    "id": "recipe_013",
+    "dish": "Bastilla",
+    "variant": "Chicken and Almond",
+    "origin": "A festive pie blending sweet and savory flavors.",
+    "title": "🥧 Bastilla",
+    "description": "Layered pastry pie with chicken, almonds, and cinnamon.",
+    "image": "./assets/images/bastilla.jpg",
+    "prep_time": "1h",
+    "cook_time": "1h 15m",
+    "servings": 8,
+    "tags": ["main", "holiday", "pastry"],
+    "ingredients": [
+      "1 whole chicken",
+      "10 sheets warqa or filo pastry",
+      "1 cup almonds",
+      "1/2 cup sugar",
+      "Cinnamon, saffron"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Cook chicken with spices, shred." },
+      { "step_number": 2, "instruction": "Mix almonds with sugar, cinnamon." },
+      {
+        "step_number": 3,
+        "instruction": "Layer pastry with chicken, almond mixture, bake."
+      }
+    ],
+    "notes": "Dust top with cinnamon sugar.",
+    "author": "Hava",
+    "created_at": "2024-04-01"
+  },
+  {
+    "id": "recipe_014",
+    "dish": "Makroud",
+    "variant": "Date-Filled Semolina",
+    "origin": "Popular for holidays and tea time.",
+    "title": "🌴 Makroud",
+    "description": "Semolina cookies stuffed with date paste, fried, and honey-soaked.",
+    "image": "./assets/images/makroud.jpg",
+    "prep_time": "1h",
+    "cook_time": "20 minutes",
+    "servings": 24,
+    "tags": ["dessert", "tea", "date"],
+    "ingredients": [
+      "500g semolina",
+      "200g date paste",
+      "Cinnamon, orange blossom water",
+      "Honey"
+    ],
+    "steps": [
+      {
+        "step_number": 1,
+        "instruction": "Make semolina dough, roll into strips."
+      },
+      { "step_number": 2, "instruction": "Fill with date paste, seal." },
+      { "step_number": 3, "instruction": "Cut, fry, soak in honey." }
+    ],
+    "notes": "Keeps well for weeks.",
+    "author": "Miriam",
+    "created_at": "2024-04-05"
+  },
+  {
+    "id": "recipe_015",
+    "dish": "Lentil Salad",
+    "variant": "Warm Spiced",
+    "origin": "Served as part of the Friday night table alongside challah.",
+    "title": "🥗 Warm Spiced Lentil Salad",
+    "description": "Earthy lentils with cumin and herbs.",
+    "image": "./assets/images/lentil-salad.jpg",
+    "prep_time": "15 minutes",
+    "cook_time": "30 minutes",
+    "servings": 6,
+    "tags": ["salad", "side", "healthy"],
+    "ingredients": [
+      "2 cups green lentils",
+      "Olive oil",
+      "Cumin, coriander",
+      "Parsley, cilantro"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Cook lentils until tender." },
+      { "step_number": 2, "instruction": "Toss with oil, spices, herbs." }
+    ],
+    "notes": "Great served warm or cold.",
+    "author": "David",
+    "created_at": "2024-04-09"
+  },
+  {
+    "id": "recipe_016",
+    "dish": "Shakshuka",
+    "variant": "Harissa-Spiced",
+    "origin": "Common in Moroccan-Israeli breakfasts.",
+    "title": "🍳 Harissa Shakshuka",
+    "description": "Eggs poached in spicy tomato sauce.",
+    "image": "./assets/images/shakshuka.jpg",
+    "prep_time": "10 minutes",
+    "cook_time": "20 minutes",
+    "servings": 4,
+    "tags": ["breakfast", "spicy", "eggs"],
+    "ingredients": ["6 eggs", "4 tomatoes", "2 tbsp harissa", "Garlic, onions"],
+    "steps": [
+      { "step_number": 1, "instruction": "Sauté onions, garlic." },
+      { "step_number": 2, "instruction": "Add tomatoes, harissa, simmer." },
+      { "step_number": 3, "instruction": "Crack eggs, cover until set." }
+    ],
+    "notes": "Serve with fresh bread.",
+    "author": "Rachel",
+    "created_at": "2024-04-15"
+  },
+  {
+    "id": "recipe_017",
+    "dish": "Mechoui",
+    "variant": "Spit-Roasted Lamb",
+    "origin": "A celebratory dish for weddings and large gatherings.",
+    "title": "🥩 Mechoui Lamb",
+    "description": "Tender, fall-off-the-bone roasted lamb.",
+    "image": "./assets/images/mechoui.jpg",
+    "prep_time": "20 minutes",
+    "cook_time": "4 hours",
+    "servings": 12,
+    "tags": ["main", "feast", "lamb"],
+    "ingredients": [
+      "Whole lamb leg",
+      "Cumin, coriander, paprika",
+      "Olive oil",
+      "Garlic cloves"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Rub lamb with spices, oil." },
+      { "step_number": 2, "instruction": "Roast slowly until tender." }
+    ],
+    "notes": "Serve with mint tea.",
+    "author": "Amram",
+    "created_at": "2024-04-18"
+  },
+  {
+    "id": "recipe_018",
+    "dish": "Baklava",
+    "variant": "Almond & Orange Blossom",
+    "origin": "Adopted into Moroccan cuisine from Ottoman influence.",
+    "title": "🍮 Almond Baklava",
+    "description": "Flaky pastry with almond filling and syrup.",
+    "image": "./assets/images/baklava.jpg",
+    "prep_time": "40 minutes",
+    "cook_time": "45 minutes",
+    "servings": 16,
+    "tags": ["dessert", "pastry", "sweet"],
+    "ingredients": [
+      "Filo pastry",
+      "Ground almonds",
+      "Sugar",
+      "Butter",
+      "Orange blossom syrup"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Layer pastry with almond filling." },
+      { "step_number": 2, "instruction": "Bake until golden." },
+      { "step_number": 3, "instruction": "Pour syrup over warm baklava." }
+    ],
+    "notes": "Cut into diamonds before baking.",
+    "author": "Sara",
+    "created_at": "2024-04-20"
+  },
+  {
+    "id": "recipe_019",
+    "dish": "Eggplant & Chickpea Stew",
+    "variant": "Spiced Tomato Base",
+    "origin": "Everyday vegetarian Moroccan dish.",
+    "title": "🍆 Eggplant Chickpea Stew",
+    "description": "Hearty, spiced vegetable stew.",
+    "image": "./assets/images/eggplant-chickpea.jpg",
+    "prep_time": "15 minutes",
+    "cook_time": "40 minutes",
+    "servings": 6,
+    "tags": ["vegetarian", "main", "stew"],
+    "ingredients": [
+      "2 eggplants",
+      "1 can chickpeas",
+      "Tomatoes, onions",
+      "Paprika, cumin"
+    ],
+    "steps": [
+      { "step_number": 1, "instruction": "Cook onions, spices in oil." },
+      {
+        "step_number": 2,
+        "instruction": "Add eggplants, tomatoes, chickpeas."
+      },
+      { "step_number": 3, "instruction": "Simmer until thickened." }
+    ],
+    "notes": "Serve with rice or couscous.",
+    "author": "Leah",
+    "created_at": "2024-04-21"
+  },
+  {
+    "id": "recipe_020",
+    "dish": "Mint Tea",
+    "variant": "Moroccan Style",
+    "origin": "The national drink of Morocco, symbolizing hospitality.",
+    "title": "🍵 Moroccan Mint Tea",
+    "description": "Sweet green tea with fresh mint.",
+    "image": "./assets/images/mint-tea.jpg",
+    "prep_time": "5 minutes",
+    "cook_time": "10 minutes",
+    "servings": 6,
+    "tags": ["tea", "drink", "traditional"],
+    "ingredients": ["Green tea leaves", "Fresh mint", "Sugar", "Boiling water"],
+    "steps": [
+      { "step_number": 1, "instruction": "Brew tea leaves in boiling water." },
+      { "step_number": 2, "instruction": "Add mint and sugar." },
+      { "step_number": 3, "instruction": "Pour from height to aerate." }
+    ],
+    "notes": "Adjust sugar to taste.",
+    "author": "Youssef",
+    "created_at": "2024-04-22"
+  }
+]
