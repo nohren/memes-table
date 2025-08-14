@@ -66,8 +66,8 @@ const Hero = styled.section`
   border-radius: 16px;
   overflow: hidden;
   height: clamp(240px, 45vh, 420px);
-  background: ${({ url }) =>
-    `linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(12,24,32,0.6) 80%), url('${url}') center/cover no-repeat`};
+  background: ${({ $url }) =>
+    `linear-gradient(180deg, rgba(0,0,0,0) 10%, rgba(12,24,32,0.6) 80%), url('${$url}') center/cover no-repeat`};
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
   outline: 1px solid rgba(255, 255, 255, 0.06);
 `;
@@ -88,7 +88,7 @@ export default function App() {
       <NavBar>
         <NavMenu menuItems={menuItems} />
       </NavBar>
-      <Hero url={'./assets/images/memes-table.jpeg'} />
+      <Hero $url={'./assets/images/memes-table.jpeg'} />
       <ViewContainer>
         <Outlet context={{ theme: 'light' }} />
       </ViewContainer>
