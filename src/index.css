@@ -9,8 +9,8 @@
 }
 
 :root {
-  --bg-1: #0f1d27;
-  --bg-2: #1c2e3b;
+  --bg-1: #007b82; /*#1c2e3b old value, darker color*/
+  --bg-2: #007b82; /*#1c2e3b old value, darker color*/
   --fg: #eaf6ff;
   --muted: rgba(255, 255, 255, 0.65);
   --accent: #66e3ff;
