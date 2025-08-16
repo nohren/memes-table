@@ -36,13 +36,12 @@ Capturing the families culinary history and converting them to a widely distribu
 
 ## Architecture
 
-This project is meant to be lightweight, simple, sustainable and free. As such there is no backend, no database, no server. It does as much as currently possible with static and freely hosted content using GitHub Pages to host the main bundle.
+This project is meant to be lightweight, simple, sustainable and free. As such there is no dedicated backend, and no database currently. It does as much as currently possible with static and freely hosted content using vercel to build and host the main bundle. With vercel we also get automatic deployment, free serverless functions, and a CDN to place the content closer to the user. The CDN is not really needed for this project but is a nice bonus.
 
-Setup is via
+Project initial setup is via
 https://www.freecodecamp.org/news/how-to-set-up-deploy-your-react-app-from-scratch-using-webpack-and-babel-a669891033d4/
 
-Project archive functionality uses:
-JSX via React, CSS via global style sheet and styled components.
+Uses JSX via React, CSS via global style sheet and styled components.
 
 ### Git Workflow
 
