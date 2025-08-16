@@ -1,7 +1,7 @@
 import React from 'react';
-import recipes from '../store/dummy_recipes.json';
+import recipes from '../store/dummy_recipes.json'; // uncomment for dummy data
+// import recipes from '../store/recipes'; uncomment for real data
 import styled from 'styled-components';
-import { ClickableElement } from './NavMenu';
 import { Link } from 'react-router-dom';
 
 const RecipeLink = styled(Link)`
