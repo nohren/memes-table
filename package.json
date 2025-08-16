@@ -3,12 +3,10 @@
   "version": "1.0.2",
   "description": "Capturing Meme's recipes and converting them to a widely distributed time resistant format.",
   "main": "index.js",
-  "homepage": "https://nohren.github.io/memes-table",
+  "homepage": "https://memes-table.vercel.app/",
   "scripts": {
     "start": "webpack-dev-server --mode development",
     "build": "webpack --mode production",
-    "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -30,7 +28,6 @@
     "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.1",
     "file-loader": "^6.2.0",
-    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",
     "webpack": "^5.91.0",

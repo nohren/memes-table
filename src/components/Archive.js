@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect } from 'react';
 import recipes from '../store/dummy_recipes.json';
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
-import { ClickableElement } from './NavMenu';
 import { Link } from 'react-router-dom';
 import { debugLog, parseTime, debugDidMount } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
