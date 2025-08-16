@@ -4,10 +4,14 @@ import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { ClickableElement } from './NavMenu';
 import { Link } from 'react-router-dom';
-import { parseTime } from './Utilities';
+import { parseTime } from './../utils/Utilities'; 
 import { useLocation } from 'react-router-dom';
 
-const RecipeLink = styled(Link)`
+export default function Archive() {
+  const location = useLocation()
+  const { RecipeDetail } = location.state || {};
+  const RecipeLink = styled(Link)`
+
   text-decoration: none; /* remove underline */
   color: inherit; /* use parent text color */
 `;
@@ -18,24 +22,18 @@ const RecipeLink = styled(Link)`
 //set the recipe in react router state and navigate to RecipeDetails component
 */
 
-export default function Archive() {
-  const location = useLocation()
-  const state = location.state ?? {} 
-
   return (
     <div>
       {recipes.map((recipe) => (
         <TextContainer key={recipe.id}>
           <RecipeLink
             to={`/recipe/${recipe.id}`}
-            state={{ from: location }} // pass current location or recipe info
+            state={{ from: location }} 
           >
             <div>{recipe.title}</div>
             <div>{recipe.author}</div>
             <div>{recipe.description}</div>
-            <div>Total time: {recipe.parseTime}</div>
-            <div>Cook time: {recipe.cook_time}</div>
-            <div>Prep time: {recipe.prep_time}</div>
+            <div>Total time: {parseTime(recipe.prep_time) + parseTime(recipe.cook_time)} minutes</div>
           </RecipeLink>
         </TextContainer>
       ))}
