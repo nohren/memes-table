@@ -28,7 +28,7 @@ export default function Archive() {
         <TextContainer key={recipe.id}>
           <RecipeLink
             to={`/recipe/${recipe.id}`}
-            state={{ from: location }} 
+            state={{ recipe }} 
           >
             <div>{recipe.title}</div>
             <div>{recipe.author}</div>
