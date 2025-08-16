@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextContainer } from './../utils/sharedCSS'; // Adjust the import path as necessary
+import { TextContainer } from '../utils/sharedCSS'; // Adjust the import path as necessary
 
 export default function About(props) {
   return (

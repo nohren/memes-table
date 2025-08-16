@@ -33,7 +33,7 @@ Future plans include:
 
 1. Serve project - `npm run start`
 2. Open the browser and navigate to http://localhost:3000. Note, I changed the port to 3000 since 8080 conflicts with Mac OS Sonoma and greater.
-3. Start work - Locate ./SRC directory and modify JS/CSS files within there.
+3. Start work - Locate src directory and modify JS/CSS files within there.
 
 ## Deployment
 

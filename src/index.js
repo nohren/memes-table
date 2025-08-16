@@ -3,11 +3,11 @@ import { createRoot } from 'react-dom/client';
 import App from './components/App';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage';
-import Chat from './Components/Chat';
+import Chat from './components/Chat';
 import About from './components/About';
 import Archive from './components/Archive';
 import { Navigate } from 'react-router-dom';
-import RecipeDetail from './Components/RecipeDetail';
+import RecipeDetail from './components/RecipeDetail';
 
 /**
  * Webpack will come through and replace process.env.NODE_ENV with proper value at compilation time
