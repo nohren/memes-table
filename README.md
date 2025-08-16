@@ -23,8 +23,12 @@ Capturing the families culinary history and converting them to a widely distribu
 ## Future designs
 
 - Archive all recipes.
-- Add an AI agent, a knowledgeable protoge of Meme as a real time cooking assistant.
-- deploy to custom domain
+- Add an AI cooking assistant for real time cooking help.
+  - assistant voices:
+    - [Lola](https://elevenlabs.io/app/voice-library?voiceId=wqKtomEaI22L2mdOxll3)
+    - [Salma](https://elevenlabs.io/app/voice-library?voiceId=aCChyB4P5WEomwRsOKRh)
+    - [Sakina](https://elevenlabs.io/app/voice-library?voiceId=RzNYiYBiH7YrpC9QKXyc)
+- (far down the road... or never) change from hash routing to browser routing and deploy to custom domain
 
 ## Contributors
 
