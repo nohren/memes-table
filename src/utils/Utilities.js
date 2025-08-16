@@ -1,17 +1,4 @@
-import recipes from '../store/dummy_recipes.json'
-/* write a time parser where we parse the number and the time unit out of a string
-
-  I (what input?) - a time string
-  O (what output?) - total minutes (an integer)
-  C -(any constraints?) - not known yet
-  E - (any edge cases?) - i.e 1m or 20h where some strings are minute or 20 or hour
-  
-  goal parse by token string.split(" ")
-  extract number and string in each token.  REGEX match string with hours or minutes
- 
-*/
-
-function parseTime(timeString) {
+export function parseTime(timeString) {
   const reHour = /(?:\d+\s*)?(?:h|hr|hrs|hour|hours)\b/i;
   const reMin  = /(?:\d+\s*)?(?:m|min|mins|minute|minutes)\b/i;
   const reNum = /\d+(?:\.\d+)?/;
