@@ -1,5 +1,7 @@
 # memes-table
 
+Name reflects the inspiration for this project, my grandmother Meme. The scope has expanded to include all family recipes, but the name remains to honor the project's origin. Name of the actual site may change.
+
 Capturing the families culinary history and converting them to a widely distributed time resistant format.
 
 ## Setup
