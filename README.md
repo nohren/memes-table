@@ -37,13 +37,10 @@ Future plans include:
 
 ## Deployment
 
-1. Predeploy `npm run predeploy`
-2. Deploy `npm run deploy` - it takes about a minute to deploy to github pages.
-3. Check it out at https://nohren.github.io/memes-table
+1. Push to main. See it built at https://memes-table.vercel.app/. Deployment is automatic via Vercel.
 
 ## Future designs
 
-- CICD github actions to deploy pages workflow
 - deploy to custom domain
 
 ### Git Workflow
