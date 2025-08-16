@@ -1,27 +1,6 @@
 # memes-table
 
-Capturing Meme's recipes and converting them to a widely distributed time resistant format.
-
-https://nohren.github.io/memes-table
-
-## Contributors
-
-...
-
-## Architecture
-
-This project is meant to be lightweight, simple, sustainable and free. As such there is no backend, no database, no server. It does as much as currently possible with static and freely hosted content using GitHub Pages to host the main bundle.
-
-Setup is via
-https://www.freecodecamp.org/news/how-to-set-up-deploy-your-react-app-from-scratch-using-webpack-and-babel-a669891033d4/
-
-Project archive functionality uses:
-JSX via React, CSS via global style sheet and styled components.
-
-Future plans include:
-
-- Archive all recipes.
-- Add an AI agent, a knowledgeable protoge of Meme as a real time cooking assistant.
+Capturing the families culinary history and converting them to a widely distributed time resistant format.
 
 ## Setup
 
@@ -41,7 +20,23 @@ Future plans include:
 
 ## Future designs
 
+- Archive all recipes.
+- Add an AI agent, a knowledgeable protoge of Meme as a real time cooking assistant.
 - deploy to custom domain
+
+## Contributors
+
+...
+
+## Architecture
+
+This project is meant to be lightweight, simple, sustainable and free. As such there is no backend, no database, no server. It does as much as currently possible with static and freely hosted content using GitHub Pages to host the main bundle.
+
+Setup is via
+https://www.freecodecamp.org/news/how-to-set-up-deploy-your-react-app-from-scratch-using-webpack-and-babel-a669891033d4/
+
+Project archive functionality uses:
+JSX via React, CSS via global style sheet and styled components.
 
 ### Git Workflow
 
