@@ -30,6 +30,9 @@ const Brand = styled.h1`
   background-clip: text;
   color: transparent;
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.2);
+  @media (max-width: 600px) {
+    font-size: clamp(1.5rem, 4vw, 2.75rem);
+  }
 `;
 
 const Construction = styled.span`
