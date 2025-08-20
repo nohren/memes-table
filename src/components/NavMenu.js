@@ -46,6 +46,12 @@ const NavItem = styled(ClickableElement)`
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.08);
   }
+
+  /* Mobile-only: increase size for better tap targets */
+  @media (max-width: 600px) {
+    font-size: 1.05em;
+    padding: 12px 18px;
+  }
 `;
 
 export default function NavMenu(props) {

@@ -21,6 +21,16 @@ const SVGCSS = styled.div`
   left: 61%;
   top: 3.5px;
   cursor: pointer;
+
+  /* Mobile: vertically center the icon and enlarge it slightly */
+  @media (max-width: 600px) {
+    top: 50%;
+    transform: translateY(-50%);
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
 `;
 
 export default function SearchBox(props) {
