@@ -62,3 +62,39 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* Mobile-only scaling to increase overall and button sizes without affecting desktop */
+@media (max-width: 600px) {
+  /* Slightly larger base text on small screens */
+  body {
+    font-size: 20px;
+  }
+
+  /* Increase interactive control text size */
+  [role='button'],
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 1.05em;
+  }
+
+  /* Bigger tap targets for elements declared as buttons */
+  [role='button'] {
+    padding: 12px 18px;
+  }
+
+  /* Larger icons within interactive elements (CSS overrides width/height attrs) */
+  button svg,
+  [role='button'] svg,
+  svg {
+    width: 1.25em;
+    height: 1.25em;
+  }
+
+  /* Improve tap target size for form controls */
+  input,
+  button {
+    min-height: 44px;
+  }
+}
