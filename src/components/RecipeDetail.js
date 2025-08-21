@@ -42,12 +42,22 @@ export default function RecipeDetail() {
 
   return (
     <div>
+      <TextContainer>
       <button onClick={() => navigate(-1)}>←Back</button>
       <h1>{recipe.title}</h1>
+      <img height={400} src={recipe.image} />
       <p>{recipe.description}</p>
       <p>Author: {recipe.author}</p>
       <p>Prep: {recipe.prep_time} | Cook: {recipe.cook_time}</p>
-      <img height={400} src={recipe.image} />
+      <p><div><strong>Ingredients:</strong>
+        <ul>
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>{ingredient}</li>
+          ))}
+        </ul>
+      </div></p>
+      <p>Steps: {recipe.step_number + recipe.instruction}</p>
+      </TextContainer>
     </div>
   );
 }
