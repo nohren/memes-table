@@ -43,6 +43,210 @@ https://www.freecodecamp.org/news/how-to-set-up-deploy-your-react-app-from-scrat
 
 Uses JSX via React, CSS via global style sheet and styled components.
 
+## Technology Stack & Usage Guide
+
+This project uses several key technologies. Here's how to work with each one:
+
+### React Router
+**Purpose**: Client-side routing for single-page application navigation
+
+**Key Components Used**:
+- `BrowserRouter` - Wraps the app for routing functionality
+- `Routes` & `Route` - Define route paths and components
+- `Link` - Navigation links between pages
+- `useNavigate` - Programmatic navigation
+- `useLocation` - Access current route and state
+
+**Common Patterns**:
+```jsx
+// Navigation with state
+<Link to="/recipe/123" state={{ recipe: recipeData }}>
+  View Recipe
+</Link>
+
+// Programmatic navigation
+const navigate = useNavigate();
+navigate('/archive');
+
+// Access route state
+const location = useLocation();
+const recipe = location.state?.recipe;
+```
+
+**Best Practices**:
+- Use `navigate('/path')` instead of `navigate(-1)` for reliable back navigation
+- Pass data via `state` prop when navigating to detail pages
+- Always handle cases where `state` might be undefined
+
+### React Icons
+**Purpose**: Icon library with thousands of icons from popular icon sets
+
+**Setup**:
+```bash
+npm install react-icons
+```
+
+**Usage**:
+```jsx
+import { IoArrowBackCircleSharp } from 'react-icons/io5';
+
+// Direct usage
+<IoArrowBackCircleSharp size={24} color="blue" />
+
+// In icon store pattern (used in this project)
+export const iconStore = { 
+  backButton: IoArrowBackCircleSharp 
+};
+```
+
+**Icon Sets Available**:
+- `react-icons/io5` - Ionicons 5
+- `react-icons/fa` - Font Awesome
+- `react-icons/md` - Material Design
+- `react-icons/hi` - Heroicons
+- `react-icons/bs` - Bootstrap Icons
+
+**Finding Icons**:
+Visit [react-icons.github.io](https://react-icons.github.io/react-icons/search/) to search and preview icons.
+
+### Styled Components
+**Purpose**: CSS-in-JS library for component-scoped styling
+
+**Setup**:
+```bash
+npm install styled-components
+```
+
+**Basic Usage**:
+```jsx
+import styled from 'styled-components';
+
+const Button = styled.button`
+  background: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  
+  &:hover {
+    background: darkblue;
+  }
+`;
+```
+
+**Advanced Patterns**:
+```jsx
+// Extending existing components
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
+
+// Conditional styling
+const Card = styled.div`
+  background: ${props => props.highlighted ? 'yellow' : 'white'};
+`;
+
+// Using CSS variables
+const Container = styled.div`
+  color: var(--fg);
+  background: var(--bg);
+`;
+```
+
+**Best Practices**:
+- Keep styled components close to where they're used
+- Use CSS variables for theme colors
+- Leverage `&:hover`, `&:focus` pseudo-selectors
+- Use `props` for conditional styling
+
+### CSS Variables (Custom Properties)
+**Purpose**: Dynamic theming and consistent color management
+
+**Definition** (in CSS or styled-components):
+```css
+:root {
+  --fg: #ffffff;
+  --bg: #1a1a1a;
+  --accent: #66e3ff;
+}
+```
+
+**Usage**:
+```css
+.text {
+  color: var(--fg);
+  background: var(--bg);
+}
+
+.highlight {
+  color: var(--accent);
+}
+```
+
+**Benefits**:
+- Easy theme switching
+- Consistent colors across components
+- Runtime color changes possible
+
+### JSON Data Management
+**Purpose**: Static data storage without database
+
+**Structure** (dummy_recipes.json):
+```json
+[
+  {
+    "id": 1,
+    "title": "Recipe Name",
+    "author": "Author Name",
+    "description": "Recipe description",
+    "prep_time": "15 minutes",
+    "cook_time": "30 minutes",
+    "ingredients": ["ingredient 1", "ingredient 2"],
+    "steps": [
+      {
+        "step_number": 1,
+        "instruction": "First step"
+      }
+    ],
+    "image": "path/to/image.jpg"
+  }
+]
+```
+
+**Usage**:
+```jsx
+import recipes from '../store/dummy_recipes.json';
+
+// Find specific recipe
+const recipe = recipes.find(r => r.id === recipeId);
+
+// Map over all recipes
+{recipes.map(recipe => (
+  <RecipeCard key={recipe.id} recipe={recipe} />
+))}
+```
+
+### Utility Functions
+**Purpose**: Reusable helper functions
+
+**Time Parsing** (utilities.js):
+```jsx
+export const parseTime = (timeString) => {
+  const match = timeString.match(/(\d+)/);
+  return match ? parseInt(match[1]) : 0;
+};
+
+// Usage
+const totalTime = parseTime(recipe.prep_time) + parseTime(recipe.cook_time);
+```
+
+**Best Practices**:
+- Keep utilities pure functions
+- Export from centralized utility files
+- Use descriptive function names
+- Handle edge cases (null, undefined, invalid input)
+
 ### Git Workflow
 
 Git is our version control system and a safeguard when writing code.
