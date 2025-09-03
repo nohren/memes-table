@@ -6,7 +6,7 @@ Capturing the families culinary history and converting them to a widely distribu
 
 ## Setup
 
-1. Open a terminal at this directory
+1. Open a terminal at this directoryco
 2. Check if you have npm, in the terminal type `npm -v`. If nothing, install npm globally via npm website instructions.
 3. Install node modules - `npm install`
 
@@ -23,6 +23,7 @@ Capturing the families culinary history and converting them to a widely distribu
 ## Future designs
 
 - Archive all recipes.
+  - Create navigation menu.
 - Add an AI cooking assistant for real time cooking help.
   - assistant voices:
     - [Lola](https://elevenlabs.io/app/voice-library?voiceId=wqKtomEaI22L2mdOxll3)
