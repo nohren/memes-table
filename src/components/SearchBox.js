@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import SVGWrapper from './SVGWrapper';
+import IconWrapper from './IconWrapper';
 
 const SearchContainer = styled.div`
   width: 25%;
@@ -49,7 +49,7 @@ export default function SearchBox(props) {
     <SearchContainer>
       <input placeholder="search recipe..." onKeyDown={onKeyDown} />
       <SVGCSS>
-        <SVGWrapper name="SearchIcon" button={false} onClick={handleSearch} />
+        <IconWrapper name="SearchIcon" button={false} onClick={handleSearch} />
       </SVGCSS>
     </SearchContainer>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { SVGStore } from '../utils/svgStore';
+import { iconStore } from '../utils/iconStore';
 
 const IconButton = styled.button`
   @media (max-width: 600px) {
@@ -8,6 +8,7 @@ const IconButton = styled.button`
     min-width: 44px;
     min-height: 44px;
   }
+  cursor: pointer;
 `;
 const IconDiv = styled.div`
   @media (max-width: 600px) {
@@ -17,22 +18,22 @@ const IconDiv = styled.div`
   }
 `;
 
-export default function SVGWrapper(props) {
-  const { name, button = false, onClick } = props;
+export default function IconWrapper(props) {
+  const { name, button = false, onClick, currentColor } = props;
 
-  const Icon = SVGStore[name] ?? console.error('Icon not found');
+  const Icon = iconStore[name] ?? console.error('Icon not found');
 
   let IconEl;
-  if (button) {
+  if (onClick) {
     IconEl = (
       <IconButton onClick={onClick}>
-        <Icon />
+        <Icon currentColor={currentColor} />
       </IconButton>
     );
   } else {
     IconEl = (
       <IconDiv onClick={onClick}>
-        <Icon />
+        <Icon currentColor={currentColor} />
       </IconDiv>
     );
   }

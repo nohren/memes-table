@@ -4,7 +4,7 @@
 
 export const menuItems = [
   { name: 'Ask Mimouna 🧑🏻‍🍳 ', path: '/chat' },
-  { name: 'Archive 📜', path: '/archive' },
+  { name: 'Recipes 🥖', path: '/archive' },
   { name: 'About ℹ️', path: '/about' },
   // { name: "Sample Holiday Menu's", path: '/holiday' },
 ];
