@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { TextContainer } from '../utils/sharedCSS';
-import IconWrapper from './IconWrapper';
 
 // Styled Components
 const BackButton = styled.button`
@@ -123,10 +122,14 @@ export default function RecipeDetail() {
   const navigate = useNavigate();
   const recipe = location.state?.recipe;
 
+  const handleBackToArchive = () => {
+    navigate('/archive');
+  };
+
   if (!recipe) {
     return (
       <TextContainer>
-        <BackButton onClick={() => navigate(-1)}>
+        <BackButton onClick={handleBackToArchive}>
           ← Back to Archive
         </BackButton>
         <ErrorContainer>
@@ -139,7 +142,7 @@ export default function RecipeDetail() {
 
   return (
     <TextContainer>
-      <BackButton onClick={() => navigate(-1)}>
+      <BackButton onClick={handleBackToArchive}>
         ← Back to Archive
       </BackButton>
 
