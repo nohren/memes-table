@@ -15,10 +15,10 @@ export default function Archive() {
   const [selectedHoliday, setSelectedHoliday] = useState('all_holidays');
   const [searchQuery, setSearchQuery] = useState('');
 
-  debugLog('rendering archive');
+  // debugLog('rendering archive');
   // console.log('selectedCategory', selectedCategory);
   // console.log('selectedHoliday', selectedHoliday);
-  debugLog('searchQuery', searchQuery);
+  // debugLog('searchQuery', searchQuery);
 
   // Main category definitions
   const mainCategories = {
@@ -78,7 +78,7 @@ export default function Archive() {
       recipe.description || '',
       recipe.author || '',
       recipe.ingredients?.join(' ') || '',
-      `${parseTime(recipe.prep_time)} ${parseTime(recipe.cook_time)}`,
+      `${parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}`,
     ];
 
     return searchFields.some((field) => fuzzySearch(query, field));

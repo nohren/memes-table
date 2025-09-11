@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { debounce } from '../utils/utilities';
 
 const SearchOuterContainer = styled.div`
@@ -47,6 +47,30 @@ const SearchIcon = styled.div`
   }
 `;
 
+const spin = keyframes`
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+`;
+
+const Spinner = styled.div`
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(102, 227, 255, 0.2);
+  border-top: 2px solid var(--accent);
+  border-radius: 50%;
+  animation: ${spin} 1s linear infinite;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  transition: opacity 0.2s ease;
+`;
+
 const ClearButton = styled.button`
   position: absolute;
   right: 12px;
@@ -61,6 +85,8 @@ const ClearButton = styled.button`
   padding: 4px;
   border-radius: 4px;
   transition: all 0.2s ease;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  pointer-events: ${(props) => (props.visible ? 'auto' : 'none')};
 
   &:hover {
     opacity: 0.8;
@@ -76,24 +102,37 @@ const ClearButton = styled.button`
 export default function SearchContainer(props) {
   const { searchQuery, setSearchQuery, clearSearch } = props;
   const [queryText, setQueryText] = useState(searchQuery);
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleQueryChange = (e) => {
     setQueryText(e.target.value);
+    setIsSearching(true);
   };
 
-  const debouncedSetSearchQuery = useCallback(debounce(setSearchQuery, 700), [
-    setSearchQuery,
-  ]);
+  const debouncedSetSearchQuery = useCallback(
+    debounce((query) => {
+      setSearchQuery(query);
+      setIsSearching(false);
+    }, 700),
+    [setSearchQuery]
+  );
 
   const handleClearSearch = () => {
     setQueryText('');
+    setIsSearching(false);
     clearSearch();
   };
 
   //debounce call setSearchQuery
   useEffect(() => {
-    debouncedSetSearchQuery(queryText);
-  }, [queryText]);
+    if (queryText.trim()) {
+      debouncedSetSearchQuery(queryText);
+    } else {
+      // If query is empty, immediately clear search and stop spinner
+      setSearchQuery('');
+      setIsSearching(false);
+    }
+  }, [queryText, debouncedSetSearchQuery, setSearchQuery]);
 
   return (
     <SearchOuterContainer>
@@ -104,8 +143,13 @@ export default function SearchContainer(props) {
         value={queryText}
         onChange={handleQueryChange}
       />
-      {searchQuery && (
-        <ClearButton onClick={handleClearSearch} aria-label="Clear search">
+      {isSearching && <Spinner visible={isSearching} />}
+      {searchQuery && !isSearching && (
+        <ClearButton
+          visible={searchQuery && !isSearching}
+          onClick={handleClearSearch}
+          aria-label="Clear search"
+        >
           ×
         </ClearButton>
       )}
