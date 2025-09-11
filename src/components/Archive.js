@@ -4,7 +4,7 @@ import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { ClickableElement } from './NavMenu';
 import { Link } from 'react-router-dom';
-import { debugLog, parseTime } from '../utils/utilities';
+import { debugLog, parseTime, debugDidMount } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
 import SearchContainer from './SearchContainer';
 
@@ -169,12 +169,7 @@ export default function Archive() {
   const [selectedHoliday, setSelectedHoliday] = useState('all_holidays');
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    console.log('Archive component mounted');
-    return () => {
-      console.log('Archive component unmounted');
-    };
-  }, []);
+  debugDidMount('Archive');
 
   // debugLog('rendering archive');
   // console.log('selectedCategory', selectedCategory);

@@ -1,3 +1,14 @@
+import React from 'react';
+
+export function debugDidMount(name) {
+  React.useEffect(() => {
+    console.log(`${name} Archive component mounted`);
+    return () => {
+      console.log(`${name} Archive component unmounted`);
+    };
+  }, []);
+}
+
 export function parseTime(timeString) {
   const reHour = /(?:\d+\s*)?(?:h|hr|hrs|hour|hours)\b/i;
   const reMin = /(?:\d+\s*)?(?:m|min|mins|minute|minutes)\b/i;
