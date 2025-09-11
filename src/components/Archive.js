@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import recipes from '../store/dummy_recipes.json';
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
@@ -8,12 +8,173 @@ import { debugLog, parseTime } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
 import SearchContainer from './SearchContainer';
 
+const RecipeLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--accent);
+  }
+`;
+
+const RecipeCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+const RecipeTitle = styled.div`
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 4px;
+`;
+
+const RecipeMeta = styled.div`
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 8px 0;
+`;
+
+const MetaItem = styled.span`
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--accent);
+  font-weight: 500;
+`;
+
+const RecipeDescription = styled.div`
+  color: var(--fg);
+  opacity: 0.8;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 4px 0;
+`;
+
+const CategoryContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+  justify-content: center;
+`;
+
+const HolidayContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  justify-content: center;
+  opacity: ${(props) => (props.visible ? 1 : 0)};
+  max-height: ${(props) => (props.visible ? '60px' : '0')};
+  overflow: hidden;
+  transition: all 0.3s ease;
+`;
+
+const CategoryButton = styled.button`
+  background: ${(props) =>
+    props.active ? 'rgba(102, 227, 255, 0.15)' : 'rgba(255, 255, 255, 0.08)'};
+  border: 1px solid
+    ${(props) =>
+      props.active ? 'rgba(102, 227, 255, 0.3)' : 'rgba(255, 255, 255, 0.08)'};
+  color: ${(props) => (props.active ? 'var(--accent)' : 'var(--fg)')};
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  min-height: 44px;
+
+  &:hover {
+    background: rgba(102, 227, 255, 0.1);
+    border-color: rgba(102, 227, 255, 0.2);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 227, 255, 0.35);
+  }
+`;
+
+const HolidayButton = styled.button`
+  background: ${(props) =>
+    props.active ? 'rgba(102, 227, 255, 0.12)' : 'rgba(255, 255, 255, 0.05)'};
+  border: 1px solid
+    ${(props) =>
+      props.active ? 'rgba(102, 227, 255, 0.25)' : 'rgba(255, 255, 255, 0.05)'};
+  color: ${(props) => (props.active ? 'var(--accent)' : 'var(--fg)')};
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  min-height: 36px;
+  opacity: 0.9;
+
+  &:hover {
+    background: rgba(102, 227, 255, 0.08);
+    border-color: rgba(102, 227, 255, 0.15);
+    color: var(--accent);
+    transform: translateY(-1px);
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(102, 227, 255, 0.35);
+  }
+`;
+
+const ResultsCount = styled.div`
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--fg);
+  opacity: 0.7;
+  font-size: 14px;
+`;
+
+const NoResults = styled.div`
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--fg);
+  opacity: 0.6;
+
+  h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+`;
+
 export default function Archive() {
   const location = useLocation();
   const { state } = location?.state ?? {};
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedHoliday, setSelectedHoliday] = useState('all_holidays');
   const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    console.log('Archive component mounted');
+    return () => {
+      console.log('Archive component unmounted');
+    };
+  }, []);
 
   // debugLog('rendering archive');
   // console.log('selectedCategory', selectedCategory);
@@ -128,164 +289,6 @@ export default function Archive() {
   const clearSearch = () => {
     setSearchQuery('');
   };
-
-  const RecipeLink = styled(Link)`
-    text-decoration: none;
-    color: inherit;
-
-    &:hover {
-      text-decoration: underline;
-      color: var(--accent);
-    }
-  `;
-
-  const RecipeCard = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  `;
-
-  const RecipeTitle = styled.div`
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--fg);
-    margin-bottom: 4px;
-  `;
-
-  const RecipeMeta = styled.div`
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    margin: 8px 0;
-  `;
-
-  const MetaItem = styled.span`
-    background: rgba(255, 255, 255, 0.08);
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 13px;
-    color: var(--accent);
-    font-weight: 500;
-  `;
-
-  const RecipeDescription = styled.div`
-    color: var(--fg);
-    opacity: 0.8;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    margin: 4px 0;
-  `;
-
-  const CategoryContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 16px;
-    justify-content: center;
-  `;
-
-  const HolidayContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 20px;
-    justify-content: center;
-    opacity: ${(props) => (props.visible ? 1 : 0)};
-    max-height: ${(props) => (props.visible ? '60px' : '0')};
-    overflow: hidden;
-    transition: all 0.3s ease;
-  `;
-
-  const CategoryButton = styled.button`
-    background: ${(props) =>
-      props.active ? 'rgba(102, 227, 255, 0.15)' : 'rgba(255, 255, 255, 0.08)'};
-    border: 1px solid
-      ${(props) =>
-        props.active
-          ? 'rgba(102, 227, 255, 0.3)'
-          : 'rgba(255, 255, 255, 0.08)'};
-    color: ${(props) => (props.active ? 'var(--accent)' : 'var(--fg)')};
-    padding: 10px 18px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(8px) saturate(130%);
-    -webkit-backdrop-filter: blur(8px) saturate(130%);
-    min-height: 44px;
-
-    &:hover {
-      background: rgba(102, 227, 255, 0.1);
-      border-color: rgba(102, 227, 255, 0.2);
-      color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    &:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(102, 227, 255, 0.35);
-    }
-  `;
-
-  const HolidayButton = styled.button`
-    background: ${(props) =>
-      props.active ? 'rgba(102, 227, 255, 0.12)' : 'rgba(255, 255, 255, 0.05)'};
-    border: 1px solid
-      ${(props) =>
-        props.active
-          ? 'rgba(102, 227, 255, 0.25)'
-          : 'rgba(255, 255, 255, 0.05)'};
-    color: ${(props) => (props.active ? 'var(--accent)' : 'var(--fg)')};
-    padding: 6px 14px;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(8px) saturate(130%);
-    -webkit-backdrop-filter: blur(8px) saturate(130%);
-    min-height: 36px;
-    opacity: 0.9;
-
-    &:hover {
-      background: rgba(102, 227, 255, 0.08);
-      border-color: rgba(102, 227, 255, 0.15);
-      color: var(--accent);
-      transform: translateY(-1px);
-      opacity: 1;
-    }
-
-    &:focus-visible {
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(102, 227, 255, 0.35);
-    }
-  `;
-
-  const ResultsCount = styled.div`
-    text-align: center;
-    margin-bottom: 20px;
-    color: var(--fg);
-    opacity: 0.7;
-    font-size: 14px;
-  `;
-
-  const NoResults = styled.div`
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--fg);
-    opacity: 0.6;
-
-    h3 {
-      margin: 0 0 8px 0;
-      font-size: 1.2rem;
-    }
-
-    p {
-      margin: 0;
-      font-size: 0.9rem;
-    }
-  `;
 
   const getResultsText = () => {
     const count = filteredRecipes.length;
