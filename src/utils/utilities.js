@@ -32,6 +32,9 @@ export function debugLog(...messages) {
   }
 }
 
+// higher order function
+// term for this in javascript is a closure
+// we keep the memory of the timeout variable
 export function debounce(func, wait) {
   let timeout;
   return function (...args) {

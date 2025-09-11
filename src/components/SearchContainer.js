@@ -85,6 +85,11 @@ export default function SearchContainer(props) {
     setSearchQuery,
   ]);
 
+  const handleClearSearch = () => {
+    setQueryText('');
+    clearSearch();
+  };
+
   //debounce call setSearchQuery
   useEffect(() => {
     debouncedSetSearchQuery(queryText);
@@ -100,7 +105,7 @@ export default function SearchContainer(props) {
         onChange={handleQueryChange}
       />
       {searchQuery && (
-        <ClearButton onClick={clearSearch} aria-label="Clear search">
+        <ClearButton onClick={handleClearSearch} aria-label="Clear search">
           ×
         </ClearButton>
       )}
