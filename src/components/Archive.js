@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import recipes from '../store/dummy_recipes.json';
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { ClickableElement } from './NavMenu';
 import { Link } from 'react-router-dom';
-import { parseTime } from '../utils/utilities';
+import { debugLog, parseTime } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
+import SearchContainer from './SearchContainer';
 
 export default function Archive() {
   const location = useLocation();
   const { state } = location?.state ?? {};
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedHoliday, setSelectedHoliday] = useState('all_holidays');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  debugLog('rendering archive');
+  // console.log('selectedCategory', selectedCategory);
+  // console.log('selectedHoliday', selectedHoliday);
+  debugLog('searchQuery', searchQuery);
 
   // Main category definitions
   const mainCategories = {
@@ -39,22 +46,72 @@ export default function Archive() {
     hanukah: { label: 'Hanukah', tags: ['hanukah'] },
   };
 
-  // Filter recipes based on selected category
-  const filteredRecipes = (() => {
+  // Simple fuzzy search function
+  const fuzzySearch = (query, text) => {
+    if (!query) return true;
+    const searchTerm = query.toLowerCase();
+    const searchText = text.toLowerCase();
+
+    // Exact match gets highest priority
+    if (searchText.includes(searchTerm)) return true;
+
+    // // Fuzzy matching - check if all characters exist in order
+    // let searchIndex = 0;
+    // for (
+    //   let i = 0;
+    //   i < searchText.length && searchIndex < searchTerm.length;
+    //   i++
+    // ) {
+    //   if (searchText[i] === searchTerm[searchIndex]) {
+    //     searchIndex++;
+    //   }
+    // }
+    // return searchIndex === searchTerm.length;
+  };
+
+  // Search in recipe fields
+  const searchInRecipe = (recipe, query) => {
+    if (!query) return true;
+
+    const searchFields = [
+      recipe.title,
+      recipe.description || '',
+      recipe.author || '',
+      recipe.ingredients?.join(' ') || '',
+      `${parseTime(recipe.prep_time)} ${parseTime(recipe.cook_time)}`,
+    ];
+
+    return searchFields.some((field) => fuzzySearch(query, field));
+  };
+
+  // Filter recipes based on selected category and search
+  const filteredRecipes = useMemo(() => {
+    let filtered = recipes;
+
+    // Apply category filter
     if (selectedCategory === 'holidays') {
       const holidayTags = holidayCategories[selectedHoliday].tags;
-      return recipes.filter((recipe) =>
+      filtered = filtered.filter((recipe) =>
         holidayTags.some((tag) => recipe.tags.includes(tag))
       );
     } else {
       const categoryTags = mainCategories[selectedCategory].tags;
-      return categoryTags.length === 0
-        ? recipes
-        : recipes.filter((recipe) =>
-            categoryTags.some((tag) => recipe.tags.includes(tag))
-          );
+      if (categoryTags.length > 0) {
+        filtered = filtered.filter((recipe) =>
+          categoryTags.some((tag) => recipe.tags.includes(tag))
+        );
+      }
     }
-  })();
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      filtered = filtered.filter((recipe) =>
+        searchInRecipe(recipe, searchQuery)
+      );
+    }
+
+    return filtered;
+  }, [selectedCategory, selectedHoliday, searchQuery]);
 
   const handleCategoryClick = (categoryKey) => {
     setSelectedCategory(categoryKey);
@@ -65,6 +122,10 @@ export default function Archive() {
 
   const handleHolidayClick = (holidayKey) => {
     setSelectedHoliday(holidayKey);
+  };
+
+  const clearSearch = () => {
+    setSearchQuery('');
   };
 
   const RecipeLink = styled(Link)`
@@ -151,7 +212,7 @@ export default function Archive() {
     transition: all 0.2s ease;
     backdrop-filter: blur(8px) saturate(130%);
     -webkit-backdrop-filter: blur(8px) saturate(130%);
-    min-height: 44px; /* Mobile-friendly touch target */
+    min-height: 44px;
 
     &:hover {
       background: rgba(102, 227, 255, 0.1);
@@ -183,7 +244,7 @@ export default function Archive() {
     transition: all 0.2s ease;
     backdrop-filter: blur(8px) saturate(130%);
     -webkit-backdrop-filter: blur(8px) saturate(130%);
-    min-height: 36px; /* Smaller but still touch-friendly */
+    min-height: 36px;
     opacity: 0.9;
 
     &:hover {
@@ -208,18 +269,47 @@ export default function Archive() {
     font-size: 14px;
   `;
 
+  const NoResults = styled.div`
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--fg);
+    opacity: 0.6;
+
+    h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+  `;
+
   const getResultsText = () => {
     const count = filteredRecipes.length;
     const recipeText = count !== 1 ? 'recipes' : 'recipe';
 
-    if (selectedCategory === 'holidays') {
-      const holidayLabel = holidayCategories[selectedHoliday].label;
-      return `Showing ${count} ${recipeText} in ${holidayLabel}`;
-    } else if (selectedCategory === 'all') {
-      return `Showing ${count} ${recipeText}`;
+    if (searchQuery.trim()) {
+      if (selectedCategory === 'holidays') {
+        const holidayLabel = holidayCategories[selectedHoliday].label;
+        return `Found ${count} ${recipeText} for "${searchQuery}" in ${holidayLabel}`;
+      } else if (selectedCategory === 'all') {
+        return `Found ${count} ${recipeText} for "${searchQuery}"`;
+      } else {
+        const categoryLabel = mainCategories[selectedCategory].label;
+        return `Found ${count} ${recipeText} for "${searchQuery}" in ${categoryLabel}`;
+      }
     } else {
-      const categoryLabel = mainCategories[selectedCategory].label;
-      return `Showing ${count} ${recipeText} in ${categoryLabel}`;
+      if (selectedCategory === 'holidays') {
+        const holidayLabel = holidayCategories[selectedHoliday].label;
+        return `Showing ${count} ${recipeText} in ${holidayLabel}`;
+      } else if (selectedCategory === 'all') {
+        return `Showing ${count} ${recipeText}`;
+      } else {
+        const categoryLabel = mainCategories[selectedCategory].label;
+        return `Showing ${count} ${recipeText} in ${categoryLabel}`;
+      }
     }
   };
 
@@ -249,29 +339,49 @@ export default function Archive() {
         ))}
       </HolidayContainer>
 
+      <SearchContainer
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        clearSearch={clearSearch}
+      />
+
       <ResultsCount>{getResultsText()}</ResultsCount>
 
-      {filteredRecipes.map((recipe) => (
-        <TextContainer key={recipe.id}>
-          <RecipeLink to={`/recipe/${recipe.id}`} state={{ ...state, recipe }}>
-            <RecipeCard>
-              <RecipeTitle>{recipe.title}</RecipeTitle>
+      {filteredRecipes.length === 0 ? (
+        <NoResults>
+          <h3>No recipes found</h3>
+          <p>
+            {searchQuery.trim()
+              ? 'Try adjusting your search or browse by category'
+              : 'No recipes match the selected category'}
+          </p>
+        </NoResults>
+      ) : (
+        filteredRecipes.map((recipe) => (
+          <TextContainer key={recipe.id}>
+            <RecipeLink
+              to={`/recipe/${recipe.id}`}
+              state={{ ...state, recipe }}
+            >
+              <RecipeCard>
+                <RecipeTitle>{recipe.title}</RecipeTitle>
 
-              <RecipeMeta>
-                {recipe.author && <MetaItem>By {recipe.author}</MetaItem>}
-                <MetaItem>
-                  {parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}{' '}
-                  min
-                </MetaItem>
-              </RecipeMeta>
+                <RecipeMeta>
+                  {recipe.author && <MetaItem>By {recipe.author}</MetaItem>}
+                  <MetaItem>
+                    {parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}{' '}
+                    min
+                  </MetaItem>
+                </RecipeMeta>
 
-              {recipe.description && (
-                <RecipeDescription>{recipe.description}</RecipeDescription>
-              )}
-            </RecipeCard>
-          </RecipeLink>
-        </TextContainer>
-      ))}
+                {recipe.description && (
+                  <RecipeDescription>{recipe.description}</RecipeDescription>
+                )}
+              </RecipeCard>
+            </RecipeLink>
+          </TextContainer>
+        ))
+      )}
     </div>
   );
 }
