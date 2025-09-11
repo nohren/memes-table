@@ -47,6 +47,7 @@ export default function Archive() {
   };
 
   // Simple fuzzy search function
+  // TODO: implement fuzzy search with levenshtein distance
   const fuzzySearch = (query, text) => {
     if (!query) return true;
     const searchTerm = query.toLowerCase();
