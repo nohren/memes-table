@@ -20,6 +20,10 @@ Capturing the families culinary history and converting them to a widely distribu
 
 1. Push to main. See it built at https://memes-table.vercel.app/. Deployment is automatic via Vercel.
 
+## UX
+
+Check https://kristinaanelson2.wixsite.com/memes-table/copy-3-of-recipes for the UX design ideas.
+
 ## Future designs
 
 - Archive all recipes.
