@@ -8,6 +8,11 @@ import { debugLog, parseTime, debugDidMount } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
 import SearchContainer from './SearchContainer';
 
+const ArchiveContainer = styled.div`
+  min-block-size: 100vh;
+  min-block-size: 100svh;
+`;
+
 const RecipeLink = styled(Link)`
   text-decoration: none;
   color: inherit;
@@ -313,7 +318,7 @@ export default function Archive() {
   };
 
   return (
-    <div>
+    <ArchiveContainer>
       <CategoryContainer>
         {Object.entries(mainCategories).map(([key, category]) => (
           <CategoryButton
@@ -342,6 +347,8 @@ export default function Archive() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         clearSearch={clearSearch}
+        selectedCategory={selectedCategory}
+        selectedHoliday={selectedHoliday}
       />
 
       <ResultsCount>{getResultsText()}</ResultsCount>
@@ -381,6 +388,6 @@ export default function Archive() {
           </TextContainer>
         ))
       )}
-    </div>
+    </ArchiveContainer>
   );
 }

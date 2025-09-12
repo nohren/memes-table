@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { debounce } from '../utils/utilities';
+import { debounce, formatSelectedCategory } from '../utils/utilities';
 
 const SearchOuterContainer = styled.div`
   position: relative;
@@ -100,7 +100,13 @@ const ClearButton = styled.button`
 `;
 
 export default function SearchContainer(props) {
-  const { searchQuery, setSearchQuery, clearSearch } = props;
+  const {
+    searchQuery,
+    setSearchQuery,
+    clearSearch,
+    selectedCategory,
+    selectedHoliday,
+  } = props;
   const [queryText, setQueryText] = useState(searchQuery);
   const [isSearching, setIsSearching] = useState(false);
 
@@ -134,12 +140,17 @@ export default function SearchContainer(props) {
     }
   }, [queryText, debouncedSetSearchQuery, setSearchQuery]);
 
+  console.log('selectedHoliday', selectedHoliday);
+
   return (
     <SearchOuterContainer>
       <SearchIcon />
       <SearchInput
         type="text"
-        placeholder="Search recipes, ingredients, author..."
+        placeholder={`Search recipes, ingredients, author... in ${formatSelectedCategory(
+          selectedCategory,
+          selectedHoliday
+        )}`}
         value={queryText}
         onChange={handleQueryChange}
       />

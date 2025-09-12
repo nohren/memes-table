@@ -53,3 +53,11 @@ export function debounce(func, wait) {
     timeout = setTimeout(() => func.apply(this, args), wait);
   };
 }
+
+export function formatSelectedCategory(selectedCategory, selectedHoliday) {
+  if (selectedHoliday !== 'all_holidays') {
+    return selectedHoliday.replace('_', ' ');
+  } else {
+    return selectedCategory.replace('_', ' ');
+  }
+}
