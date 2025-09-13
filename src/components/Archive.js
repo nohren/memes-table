@@ -427,3 +427,7 @@ export default function Archive() {
     </ArchiveContainer>
   );
 }
+
+// TODO:
+// create "quick" category filter
+// add "holidays" to tags in dummy recipe json
