@@ -196,6 +196,7 @@ export default function Archive() {
     all: { label: 'All Recipes', tags: [] },
     breakfast: { label: 'Breakfast', tags: ['breakfast'] },
     main_entrees: { label: 'Main Entrees', tags: ['main'] },
+    quick: { label: 'Quick', tags: ['quick'] },
     soups: { label: 'Soups', tags: ['soup'] },
     breads: { label: 'Breads', tags: ['bread'] },
     sides: { label: 'Sides', tags: ['side', 'salad', 'starter'] },
@@ -243,20 +244,119 @@ export default function Archive() {
     const searchText = text.toLowerCase();
 
     // Exact match gets highest priority
-    if (searchText.includes(searchTerm)) return true;
+    //if (searchText.includes(searchTerm)) return true;
 
-    // // Fuzzy matching - check if all characters exist in order
-    // let searchIndex = 0;
-    // for (
-    //   let i = 0;
-    //   i < searchText.length && searchIndex < searchTerm.length;
-    //   i++
-    // ) {
-    //   if (searchText[i] === searchTerm[searchIndex]) {
-    //     searchIndex++;
+        // // Fuzzy matching - all characters must exist in order 
+    //    let searchIndex = 0;
+    //    for (
+    //     let i = 0;
+    //     i < searchText.length && searchIndex < searchTerm.length;
+    //     i++
+    //   ) {
+    //     if (searchText[i] === searchTerm[searchIndex]) {
+    //       searchIndex++;
+    //     }
     //   }
-    // }
-    // return searchIndex === searchTerm.length;
+    //  return searchIndex === searchTerm.length;
+    // };
+
+    // Enhanced fuzzy matching with word-level tolerance
+    const fuzzyMatchWithWords = (query, text) => {
+      const queryWords = query.split(/\s+/).filter(word => word.length > 0);
+      const textWords = text.split(/\s+/).filter(word => word.length > 0);
+      
+      // If query has only one word, use character-level matching
+      if (queryWords.length === 1) {
+        const levenshteinInOrder = (queryWord, text) => {
+          const m = queryWord.length;
+          const n = text.length;
+          
+          const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(Infinity));
+          
+          for (let j = 0; j <= n; j++) {
+            dp[0][j] = 0;
+          }
+          
+          for (let i = 1; i <= m; i++) {
+            for (let j = 1; j <= n; j++) {
+              if (queryWord[i - 1] === text[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+              } else {
+                dp[i][j] = Math.min(
+                  dp[i][j - 1] + 1,
+                  dp[i - 1][j] + 1
+                );
+              }
+            }
+          }
+          
+          let minDistance = Infinity;
+          for (let j = 0; j <= n; j++) {
+            minDistance = Math.min(minDistance, dp[m][j]);
+          }
+          
+          return minDistance;
+        };
+        
+        const maxDistance = Math.floor(queryWords[0].length * 0.3);
+        const distance = levenshteinInOrder(queryWords[0], text);
+        return distance <= maxDistance;
+      }
+      
+      // For multiple words, check if query words appear in order with word-level gaps allowed
+      let queryWordIndex = 0;
+      let matchedWords = 0;
+      
+      for (let i = 0; i < textWords.length && queryWordIndex < queryWords.length; i++) {
+        const queryWord = queryWords[queryWordIndex];
+        const textWord = textWords[i];
+        
+        // Check if this text word matches the current query word (with character-level tolerance)
+        const levenshteinInOrder = (qWord, tWord) => {
+          const m = qWord.length;
+          const n = tWord.length;
+          
+          const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(Infinity));
+          
+          for (let j = 0; j <= n; j++) {
+            dp[0][j] = 0;
+          }
+          
+          for (let i = 1; i <= m; i++) {
+            for (let j = 1; j <= n; j++) {
+              if (qWord[i - 1] === tWord[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1];
+              } else {
+                dp[i][j] = Math.min(
+                  dp[i][j - 1] + 1,
+                  dp[i - 1][j] + 1
+                );
+              }
+            }
+          }
+          
+          let minDistance = Infinity;
+          for (let j = 0; j <= n; j++) {
+            minDistance = Math.min(minDistance, dp[m][j]);
+          }
+          
+          return minDistance;
+        };
+        
+        const maxWordDistance = Math.floor(queryWord.length * 0.3);
+        const wordDistance = levenshteinInOrder(queryWord, textWord);
+        
+        if (wordDistance <= maxWordDistance) {
+          matchedWords++;
+          queryWordIndex++; // Move to next query word
+        }
+      }
+      
+      // Allow missing one word - if we matched all words or all but one
+      return matchedWords >= queryWords.length - 1;
+    };
+    
+    return fuzzyMatchWithWords(searchTerm, searchText);
   };
 
   // Search in recipe fields
