@@ -29,10 +29,10 @@ export default function About(props) {
         food and hospitality are central to our essence and our identity.
         <br />
         <br />
-        -Shalom u'bracha (peace and blessings) to all who visit.
+        Shalom u'bracha (peace and blessings) to all who visit.
         <br />
         <br />
-        -Z"L Z
+        Z"L Z
       </TextContainer>
     </>
   );
