@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { TextContainer } from '../utils/sharedCSS';
+import { parseTime } from '../utils/utilities';
 
 // Styled Components
 const BackButton = styled.button`
@@ -121,6 +122,7 @@ export default function RecipeDetail() {
   const location = useLocation();
   const navigate = useNavigate();
   const recipe = location.state?.recipe;
+  const recipeImage = recipe?.image.repo_path ?? recipe?.image.source_url;
 
   const handleBackToArchive = () => {
     navigate('/archive');
@@ -144,9 +146,7 @@ export default function RecipeDetail() {
 
       <RecipeTitle>{recipe.title}</RecipeTitle>
 
-      {recipe.image.repo_path && (
-        <RecipeImage src={recipe.image.repo_path} alt={recipe.image.alt} />
-      )}
+      {recipeImage && <RecipeImage src={recipeImage} alt={recipe.image.alt} />}
 
       {recipe.description && (
         <RecipeDescription>{recipe.description}</RecipeDescription>
@@ -162,13 +162,13 @@ export default function RecipeDetail() {
         {recipe.prep_time && (
           <MetaItem>
             <span className="label">Prep:</span>
-            <span className="value">{recipe.prep_time}</span>
+            <span className="value">{parseTime(recipe.prep_time)} min</span>
           </MetaItem>
         )}
         {recipe.cook_time && (
           <MetaItem>
             <span className="label">Cook:</span>
-            <span className="value">{recipe.cook_time}</span>
+            <span className="value">{parseTime(recipe.cook_time)} min</span>
           </MetaItem>
         )}
       </RecipeMeta>

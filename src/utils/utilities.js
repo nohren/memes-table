@@ -9,10 +9,42 @@ export function debugDidMount(name) {
   }, []);
 }
 
+// Parse "H:MM:SS" (e.g., "0:10:00"). Also accepts "MM:SS" as 0:MM:SS.
+function parseHMS(s) {
+  s = (s || '').trim();
+  if (!s) return null;
+
+  // H:MM:SS  or  MM:SS
+  const parts = s.split(':').map((v) => v.trim());
+  if (parts.length === 3) {
+    const [h, m, sec] = parts.map((n) => Number(n));
+    if (Number.isFinite(h) && m >= 0 && m < 60 && sec >= 0 && sec < 60) {
+      return {
+        hours: h,
+        minutes: m,
+        seconds: sec,
+        totalSeconds: h * 3600 + m * 60 + sec,
+      };
+    }
+    return null;
+  }
+  if (parts.length === 2) {
+    const [m, sec] = parts.map((n) => Number(n));
+    if (m >= 0 && m < 60 && sec >= 0 && sec < 60) {
+      return { hours: 0, minutes: m, seconds: sec, totalSeconds: m * 60 + sec };
+    }
+    return null;
+  }
+  return null;
+}
+// returns total minutes
 export function parseTime(timeString) {
   const reHour = /(?:\d+\s*)?(?:h|hr|hrs|hour|hours)\b/i;
   const reMin = /(?:\d+\s*)?(?:m|min|mins|minute|minutes)\b/i;
   const reNum = /\d+(?:\.\d+)?/;
+
+  const hms = parseHMS(timeString);
+  if (hms) return hms.totalSeconds / 60;
 
   //iterate over each token, if its purely a number push to the numStack
   //if we have both number and unit, calculate
