@@ -21,12 +21,9 @@ jobs:
           echo "AUTHOR=${{ github.event.client_payload.recipe.author }}" >> $GITHUB_ENV
           echo "DESCRIPTION=${{ github.event.client_payload.recipe.description }}" >> $GITHUB_ENV
           echo "ORIGIN=${{ github.event.client_payload.recipe.origin }}" >> $GITHUB_ENV
-          echo 'INGREDIENTS_JSON=${{ toJson(github.event.client_payload.recipe.ingredients) }}' >> $GITHUB_ENV
-          echo 'STEPS_JSON=${{ toJson(github.event.client_payload.recipe.steps) }}' >> $GITHUB_ENV
           echo "PREP_TIME=${{ github.event.client_payload.recipe.prep_time }}" >> $GITHUB_ENV
           echo "COOK_TIME=${{ github.event.client_payload.recipe.cook_time }}" >> $GITHUB_ENV
           echo "SERVINGS=${{ github.event.client_payload.recipe.servings }}" >> $GITHUB_ENV
-          echo 'TAGS_JSON=${{ toJson(github.event.client_payload.recipe.tags) }}' >> $GITHUB_ENV
           echo "NOTES=${{ github.event.client_payload.recipe.notes }}" >> $GITHUB_ENV
           echo "IMAGE_URL=${{ github.event.client_payload.recipe.image_url }}" >> $GITHUB_ENV
           {
