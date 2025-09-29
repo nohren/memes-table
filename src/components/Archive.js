@@ -174,7 +174,7 @@ export default function Archive() {
   const [selectedHoliday, setSelectedHoliday] = useState('all_holidays');
   const [searchQuery, setSearchQuery] = useState('');
 
-  debugDidMount('Archive');
+  // debugDidMount('Archive');
 
   // debugLog('rendering archive');
   // console.log('selectedCategory', selectedCategory);
