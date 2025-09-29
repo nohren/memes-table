@@ -1,0 +1,31 @@
+{
+  "id": "recipe_2025-09-29T19:50:51Z_matbucha_o",
+  "title": "spag",
+  "dish": "Matbucha",
+  "description": "dsd",
+  "origin": "ds",
+  "image": {
+    "source_url": "",
+    "alt": "spag",
+    "repo_path": null
+  },
+  "prep_time": "0:05:00",
+  "cook_time": "0:05:00",
+  "servings": 4,
+  "tags": [
+    "passover",
+    "purim",
+    "rosh hashana"
+  ],
+  "ingredients": [
+    "meat",
+    "read sauce"
+  ],
+  "steps": [
+    "boil",
+    "pake"
+  ],
+  "notes": "sd",
+  "author": "o",
+  "created_at": "2025-09-29T19:50:51Z"
+}
