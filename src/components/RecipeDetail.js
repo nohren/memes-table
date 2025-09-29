@@ -13,7 +13,7 @@ const BackButton = styled.button`
   border-radius: 6px;
   font-size: 14px;
   margin-bottom: 20px;
-  
+
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     color: var(--accent);
@@ -49,13 +49,13 @@ const MetaItem = styled.div`
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   font-size: 14px;
-  
+
   .label {
     color: var(--accent);
     font-weight: 500;
     margin-right: 6px;
   }
-  
+
   .value {
     color: var(--fg);
     font-weight: 400;
@@ -87,7 +87,7 @@ const IngredientList = styled.ul`
 const IngredientItem = styled.li`
   padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -101,7 +101,7 @@ const StepList = styled.ol`
 const StepItem = styled.li`
   padding: 15px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -129,9 +129,7 @@ export default function RecipeDetail() {
   if (!recipe) {
     return (
       <TextContainer>
-        <BackButton onClick={handleBackToArchive}>
-          ← Back to Archive
-        </BackButton>
+        <BackButton onClick={handleBackToArchive}>← Back to Archive</BackButton>
         <ErrorContainer>
           <ErrorTitle>Recipe not found</ErrorTitle>
           <p>Try going back to the Archive to browse available recipes.</p>
@@ -142,18 +140,18 @@ export default function RecipeDetail() {
 
   return (
     <TextContainer>
-      <BackButton onClick={handleBackToArchive}>
-        ← Back to Archive
-      </BackButton>
+      <BackButton onClick={handleBackToArchive}>← Back to Archive</BackButton>
 
       <RecipeTitle>{recipe.title}</RecipeTitle>
-      
-      {recipe.image && <RecipeImage src={recipe.image} alt={recipe.title} />}
-      
+
+      {recipe.image.repo_path && (
+        <RecipeImage src={recipe.image.repo_path} alt={recipe.image.alt} />
+      )}
+
       {recipe.description && (
         <RecipeDescription>{recipe.description}</RecipeDescription>
       )}
-      
+
       <RecipeMeta>
         {recipe.author && (
           <MetaItem>
@@ -190,8 +188,8 @@ export default function RecipeDetail() {
         <>
           <SectionTitle>Instructions</SectionTitle>
           <StepList>
-            {recipe.steps.map((step) => (
-              <StepItem key={step.step_number}>{step.instruction}</StepItem>
+            {recipe.steps.map((step, i) => (
+              <StepItem key={i}>{step}</StepItem>
             ))}
           </StepList>
         </>

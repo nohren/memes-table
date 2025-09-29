@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import recipes from '../store/recipes';
+//import recipes from '../store/dummy_recipes.json';
+import recipes from '../store/recipes'; // live recipes, comment out dummy_recipes to test on live
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -192,6 +193,10 @@ export default function Archive() {
     holidays: {
       label: 'Holidays',
       tags: ['holiday', 'shabbat', 'ramadan', 'mimouna'],
+    },
+    other: {
+      label: 'Other',
+      tags: ['tea', 'drink'],
     },
   };
 

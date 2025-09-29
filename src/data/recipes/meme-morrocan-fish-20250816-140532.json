@@ -1,12 +1,18 @@
 {
   "id": "recipe_001",
   "title": "🌶️ Moroccan Spicy Fish 🐟",
+  "dish": "Moroccan Fish",
   "description": "A classic shabbat recipe passed down through generations.",
-  "image": "./assets/images/moroccanfish_001.jpeg",
+  "origin": "Morocco, North Africa",
+  "image": {
+    "source_url": null,
+    "alt": "Moroccan Fish",
+    "repo_path": "./assets/images/moroccanfish_001.jpeg"
+  },
   "prep_time": "30 minutes",
   "cook_time": "1 hour",
-  "servings": 8,
-  "tags": ["dessert", "grandma", "classic", "apple"],
+  "servings": 10,
+  "tags": ["dinner", "main", "fish", "shabbat", "spicy"],
   "ingredients": [
     "6 cups sliced apples",
     "3/4 cup sugar",
@@ -17,30 +23,12 @@
     "1 double crust pie pastry"
   ],
   "steps": [
-    {
-      "step_number": 1,
-      "instruction": "Preheat oven to 425°F (220°C)."
-    },
-    {
-      "step_number": 2,
-      "instruction": "In a large bowl, combine apples, sugar, flour, cinnamon, nutmeg, and lemon juice. Toss to coat."
-    },
-    {
-      "step_number": 3,
-      "instruction": "Place one pie crust in a 9-inch pie plate. Fill with apple mixture."
-    },
-    {
-      "step_number": 4,
-      "instruction": "Top with second crust. Seal edges and cut slits in top to allow steam to escape."
-    },
-    {
-      "step_number": 5,
-      "instruction": "Bake for 45–50 minutes or until crust is golden brown and apples are tender."
-    },
-    {
-      "step_number": 6,
-      "instruction": "Cool before serving."
-    }
+    "Preheat oven to 425°F (220°C).",
+    "In a large bowl, combine apples, sugar, flour, cinnamon, nutmeg, and lemon juice. Toss to coat.",
+    "Place one pie crust in a 9-inch pie plate. Fill with apple mixture.",
+    "Top with second crust. Seal edges and cut slits in top to allow steam to escape.",
+    "Bake for 45–50 minutes or until crust is golden brown and apples are tender.",
+    "Cool before serving."
   ],
   "notes": "You can mix tart and sweet apples for a balanced flavor.",
   "author": "Meme",

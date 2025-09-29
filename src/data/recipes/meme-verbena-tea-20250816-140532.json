@@ -1,0 +1,29 @@
+{
+  "id": "recipe_002",
+  "title": "🍃 Verbena Harvest 🌿",
+  "dish": "tea",
+  "origin": "Morocco, North Africa, South America, Mediterranean",
+  "description": "A calming herbal tea high in antioxidant.",
+  "image": {
+    "source_url": null,
+    "alt": "Meme verbena pic",
+    "repo_path": "./assets/images/memes-stash.png"
+  },
+  "prep_time": "30 minutes",
+  "cook_time": "",
+  "servings": 50,
+  "tags": ["tea", "herbal", "antioxidant"],
+  "ingredients": ["5 handfuls of verbena leaves", "sunny day"],
+  "steps": [
+    "While on the branch, spray leaves with water to remove dust.  Wait for it to dry.",
+    "Once dry, cut branches or pick leaves",
+    "Strip leaves from branches and place in a bowl.",
+    "Place leaves on table cloth to dry (do not use vinyl)",
+    "Flip on table cloth until its really crispy",
+    "Bag the verbena for storage"
+  ],
+  "notes": "Verbena is a great antioxidant and can be used in many recipes.  Great before sleep and for stomach ache.",
+  "memory": "The aroma of drying verbena fills the kitchen with a sense of calm.",
+  "author": "Meme",
+  "created_at": "2025-08-07"
+}
