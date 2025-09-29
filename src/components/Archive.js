@@ -225,7 +225,7 @@ export default function Archive() {
     purim: { label: 'Purim', tags: [holidayTags[4]] },
   };
 
-  // generate set for membership testing to catch categories that do not fall until button representation
+  // generate set membership to quickly catch tags that do not have representation
   const tagSet = useMemo(
     () =>
       new Set([
@@ -286,8 +286,7 @@ export default function Archive() {
       );
     } else if (selectedCategory === 'other') {
       filtered = filtered.filter((recipe) => {
-        const recipeTags = new Set(recipe.tags);
-        return [...recipeTags].every((tag) => !tagSet.has(tag));
+        return recipe.tags.every((tag) => !tagSet.has(tag));
       });
     } else {
       const categoryTags = mainCategories[selectedCategory].tags;
