@@ -17,10 +17,10 @@ export default function About(props) {
         A Third Culture Kid (TCK) is a person who has spent a significant part
         of their developmental years in a culture different from their parents'
         passport country, creating their own unique "third" culture. TCK has
-        defined the experience of our first generation parents and lesser but
-        still present part on the second generation. As this trend continues
-        into the 3rd generation, we provide a guide that is always available for
-        all who seek to find their living breathing roots.
+        defined the experience of our first generation parents and has had a
+        lesser but still present part on the second generation. As we trend into
+        the 3rd generation, we provide a tender guiding hand to those who seek
+        their living breathing roots.
       </TextContainer>
       <TextContainer>
         In capturing our culinary traditions, we also embrace open hearts, and
