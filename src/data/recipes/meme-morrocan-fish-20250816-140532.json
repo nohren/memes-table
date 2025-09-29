@@ -1,0 +1,36 @@
+{
+  "id": "recipe_001",
+  "title": "🌶️ Moroccan Spicy Fish 🐟",
+  "dish": "Moroccan Fish",
+  "description": "A classic shabbat recipe passed down through generations.",
+  "origin": "Morocco, North Africa",
+  "image": {
+    "source_url": null,
+    "alt": "Moroccan Fish",
+    "repo_path": "./assets/images/moroccanfish_001.jpeg"
+  },
+  "prep_time": "30 minutes",
+  "cook_time": "1 hour",
+  "servings": 10,
+  "tags": ["dinner", "main", "fish", "shabbat", "spicy"],
+  "ingredients": [
+    "6 cups sliced apples",
+    "3/4 cup sugar",
+    "2 tbsp all-purpose flour",
+    "1/2 tsp ground cinnamon",
+    "1/4 tsp ground nutmeg",
+    "1 tbsp lemon juice",
+    "1 double crust pie pastry"
+  ],
+  "steps": [
+    "Preheat oven to 425°F (220°C).",
+    "In a large bowl, combine apples, sugar, flour, cinnamon, nutmeg, and lemon juice. Toss to coat.",
+    "Place one pie crust in a 9-inch pie plate. Fill with apple mixture.",
+    "Top with second crust. Seal edges and cut slits in top to allow steam to escape.",
+    "Bake for 45–50 minutes or until crust is golden brown and apples are tender.",
+    "Cool before serving."
+  ],
+  "notes": "You can mix tart and sweet apples for a balanced flavor.",
+  "author": "Meme",
+  "created_at": "2024-08-01"
+}

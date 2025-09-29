@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import recipes from '../store/dummy_recipes.json';
+//import recipes from '../store/dummy_recipes.json';
+import recipes from '../store/recipes'; // live recipes, comment out dummy_recipes to test on live
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
-import { ClickableElement } from './NavMenu';
 import { Link } from 'react-router-dom';
 import { debugLog, parseTime, debugDidMount } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
@@ -181,6 +181,16 @@ export default function Archive() {
   // console.log('selectedHoliday', selectedHoliday);
   // debugLog('searchQuery', searchQuery);
 
+  const holidayTags = [
+    'holiday',
+    'shabbat',
+    'passover',
+    'mimouna',
+    'purim',
+    'rosh hashana',
+    'hanukah',
+  ];
+
   // Main category definitions
   const mainCategories = {
     all: { label: 'All Recipes', tags: [] },
@@ -192,7 +202,11 @@ export default function Archive() {
     desserts: { label: 'Desserts', tags: ['dessert'] },
     holidays: {
       label: 'Holidays',
-      tags: ['holiday', 'shabbat', 'ramadan', 'mimouna'],
+      tags: holidayTags,
+    },
+    other: {
+      label: 'Other',
+      tags: ['tea', 'drink'],
     },
   };
 
@@ -200,11 +214,14 @@ export default function Archive() {
   const holidayCategories = {
     all_holidays: {
       label: 'All Holidays',
-      tags: ['holiday', 'shabbat', 'ramadan', 'mimouna'],
+      tags: holidayTags,
     },
-    rosh_hashana: { label: 'Rosh Hashana', tags: ['rosh hashana'] },
-    passover: { label: 'Passover', tags: ['passover'] },
-    hanukah: { label: 'Hanukah', tags: ['hanukah'] },
+    rosh_hashana: { label: 'Rosh Hashana', tags: [holidayTags[5]] },
+    passover: { label: 'Passover', tags: [holidayTags[2]] },
+    hanukah: { label: 'Hanukah', tags: [holidayTags[6]] },
+    shabbat: { label: 'Shabbat', tags: [holidayTags[1]] },
+    mimouna: { label: 'Mimouna', tags: [holidayTags[3]] },
+    purim: { label: 'Purim', tags: [holidayTags[4]] },
   };
 
   // Simple fuzzy search function

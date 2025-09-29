@@ -1,0 +1,96 @@
+name: 'Recipe PR from Google Form'
+
+on:
+  repository_dispatch:
+    types: [new_recipe]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  make-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare env from payload
+        run: |
+          echo "TITLE=${{ github.event.client_payload.title }}" >> $GITHUB_ENV
+          echo "DISH=${{ github.event.client_payload.dish }}" >> $GITHUB_ENV
+          echo "AUTHOR=${{ github.event.client_payload.author }}" >> $GITHUB_ENV
+          echo "DESCRIPTION=${{ github.event.client_payload.description }}" >> $GITHUB_ENV
+          echo "ORIGIN=${{ github.event.client_payload.origin }}" >> $GITHUB_ENV
+          echo 'INGREDIENTS_JSON=${{ toJson(github.event.client_payload.ingredients) }}' >> $GITHUB_ENV
+          echo 'STEPS_JSON=${{ toJson(github.event.client_payload.steps) }}' >> $GITHUB_ENV
+          echo "PREP_TIME=${{ github.event.client_payload.prep_time }}" >> $GITHUB_ENV
+          echo "COOK_TIME=${{ github.event.client_payload.cook_time }}" >> $GITHUB_ENV
+          echo "SERVINGS=${{ github.event.client_payload.servings }}" >> $GITHUB_ENV
+          echo 'TAGS_JSON=${{ toJson(github.event.client_payload.tags) }}' >> $GITHUB_ENV
+          echo "NOTES=${{ github.event.client_payload.notes }}" >> $GITHUB_ENV
+          echo "IMAGE_URL=${{ github.event.client_payload.image_url }}" >> $GITHUB_ENV
+
+      - name: Slug + filename
+        id: n
+        shell: bash
+        run: |
+          slug() { printf "%s" "$1" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g;s/^-+//;s/-+$//'; }
+          DS=$(slug "$DISH"); AU=$(slug "$AUTHOR")
+          TS=$(date -u +%Y%m%d-%H%M%S)
+          BR="recipe/${TS}-${DS}-by-${AU}"
+          RECIPE_DIR="src/data/recipes"
+          FILE="${RECIPE_DIR}/${TS}--${DS}--by-${AU}.json"
+          echo "BR=$BR" >> $GITHUB_OUTPUT
+          echo "FILE=$FILE" >> $GITHUB_OUTPUT
+
+      - name: Build JSON
+        shell: bash
+        run: |
+          mkdir -p "$(dirname '${{ steps.n.outputs.FILE }}')"
+          jq -n \
+            --arg title "$TITLE" \
+            --arg dish "$DISH" \
+            --arg description "$DESCRIPTION" \
+            --arg origin "$ORIGIN" \
+            --arg prep_time "$PREP_TIME" \
+            --arg cook_time "$COOK_TIME" \
+            --arg servings "$SERVINGS" \
+            --arg notes "$NOTES" \
+            --arg author "$AUTHOR" \
+            --arg created_at "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --arg image_url "$IMAGE_URL" \
+            --argjson ingredients "$INGREDIENTS_JSON" \
+            --argjson steps "$STEPS_JSON" \
+            --argjson tags "$TAGS_JSON" \
+            '{
+              id: ("recipe_" + $created_at + "_" + ($dish|ascii_downcase|gsub("[^a-z0-9]+";"-")) + "_" + ($author|ascii_downcase|gsub("[^a-z0-9]+";"-"))),
+              title: $title,
+              dish: $dish,
+              description: $description,
+              origin: $origin,
+              image: { source_url: $image_url, alt: $title, repo_path: null },
+              prep_time: $prep_time,
+              cook_time: $cook_time,
+              servings: (try ($servings|tonumber) catch $servings),
+              tags: ($tags|map(ascii_downcase)|unique),
+              ingredients: $ingredients,
+              steps: $steps,
+              notes: $notes,
+              author: $author,
+              created_at: $created_at
+            }' > "${{ steps.n.outputs.FILE }}"
+          echo "Wrote ${{ steps.n.outputs.FILE }}"
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ${{ steps.n.outputs.BR }}
+          commit-message: 'feat(recipe): add ${{ env.TITLE }} by ${{ env.AUTHOR }}'
+          title: 'Add recipe: ${{ env.TITLE }}'
+          body: |
+            Auto-submitted via Google Form.
+            - Dish: **${{ env.DISH }}**
+            - Author: **${{ env.AUTHOR }}**
+            - Tags: **${{ env.TAGS_JSON }}**
+            - Image: ${{ env.IMAGE_URL }}
+          labels: recipe, from-form
