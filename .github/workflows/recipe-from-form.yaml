@@ -99,6 +99,7 @@ jobs:
           title: 'Add recipe: ${{ env.TITLE }}'
           body: |
             Auto-submitted via Google Form.
+            - Title: **${{ env.TITLE }}**
             - Dish: **${{ env.DISH }}**
             - Author: **${{ env.AUTHOR }}**
             - Tags: **${{ env.TAGS_JSON }}**
