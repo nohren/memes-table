@@ -16,19 +16,19 @@ jobs:
 
       - name: Prepare env from payload
         run: |
-          echo "TITLE=${{ github.event.client_payload.title }}" >> $GITHUB_ENV
-          echo "DISH=${{ github.event.client_payload.dish }}" >> $GITHUB_ENV
-          echo "AUTHOR=${{ github.event.client_payload.author }}" >> $GITHUB_ENV
-          echo "DESCRIPTION=${{ github.event.client_payload.description }}" >> $GITHUB_ENV
-          echo "ORIGIN=${{ github.event.client_payload.origin }}" >> $GITHUB_ENV
-          echo 'INGREDIENTS_JSON=${{ toJson(github.event.client_payload.ingredients) }}' >> $GITHUB_ENV
-          echo 'STEPS_JSON=${{ toJson(github.event.client_payload.steps) }}' >> $GITHUB_ENV
-          echo "PREP_TIME=${{ github.event.client_payload.prep_time }}" >> $GITHUB_ENV
-          echo "COOK_TIME=${{ github.event.client_payload.cook_time }}" >> $GITHUB_ENV
-          echo "SERVINGS=${{ github.event.client_payload.servings }}" >> $GITHUB_ENV
-          echo 'TAGS_JSON=${{ toJson(github.event.client_payload.tags) }}' >> $GITHUB_ENV
-          echo "NOTES=${{ github.event.client_payload.notes }}" >> $GITHUB_ENV
-          echo "IMAGE_URL=${{ github.event.client_payload.image_url }}" >> $GITHUB_ENV
+          echo "TITLE=${{ github.event.client_payload.recipe.title }}" >> $GITHUB_ENV
+          echo "DISH=${{ github.event.client_payload.recipe.dish }}" >> $GITHUB_ENV
+          echo "AUTHOR=${{ github.event.client_payload.recipe.author }}" >> $GITHUB_ENV
+          echo "DESCRIPTION=${{ github.event.client_payload.recipe.description }}" >> $GITHUB_ENV
+          echo "ORIGIN=${{ github.event.client_payload.recipe.origin }}" >> $GITHUB_ENV
+          echo 'INGREDIENTS_JSON=${{ toJson(github.event.client_payload.recipe.ingredients) }}' >> $GITHUB_ENV
+          echo 'STEPS_JSON=${{ toJson(github.event.client_payload.recipe.steps) }}' >> $GITHUB_ENV
+          echo "PREP_TIME=${{ github.event.client_payload.recipe.prep_time }}" >> $GITHUB_ENV
+          echo "COOK_TIME=${{ github.event.client_payload.recipe.cook_time }}" >> $GITHUB_ENV
+          echo "SERVINGS=${{ github.event.client_payload.recipe.servings }}" >> $GITHUB_ENV
+          echo 'TAGS_JSON=${{ toJson(github.event.client_payload.recipe.tags) }}' >> $GITHUB_ENV
+          echo "NOTES=${{ github.event.client_payload.recipe.notes }}" >> $GITHUB_ENV
+          echo "IMAGE_URL=${{ github.event.client_payload.recipe.image_url }}" >> $GITHUB_ENV
 
       - name: Slug + filename
         id: n
@@ -46,7 +46,7 @@ jobs:
       - name: Build JSON
         shell: bash
         run: |
-          mkdir -p "$(dirname '${{ steps.n.outputs.FILE }}')"
+          mkdir -p "$(dirname "${{ steps.n.outputs.FILE }}")"
           jq -n \
             --arg title "$TITLE" \
             --arg dish "$DISH" \
