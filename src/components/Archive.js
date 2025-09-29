@@ -205,8 +205,9 @@ export default function Archive() {
       tags: holidayTags,
     },
     other: {
+      // TODO: add a catch-all category for recipes whos tags don't fit other categories
       label: 'Other',
-      tags: ['tea', 'drink'],
+      tags: [],
     },
   };
 
@@ -223,6 +224,16 @@ export default function Archive() {
     mimouna: { label: 'Mimouna', tags: [holidayTags[3]] },
     purim: { label: 'Purim', tags: [holidayTags[4]] },
   };
+
+  // generate set for membership testing to catch categories that do not fall until button representation
+  const tagSet = useMemo(
+    () =>
+      new Set([
+        ...holidayTags,
+        ...Object.values(mainCategories).flatMap((cat) => cat.tags),
+      ]),
+    []
+  );
 
   // Simple fuzzy search function
   // TODO: implement fuzzy search with levenshtein distance
@@ -273,6 +284,11 @@ export default function Archive() {
       filtered = filtered.filter((recipe) =>
         holidayTags.some((tag) => recipe.tags.includes(tag))
       );
+    } else if (selectedCategory === 'other') {
+      filtered = filtered.filter((recipe) => {
+        const recipeTags = new Set(recipe.tags);
+        return [...recipeTags].every((tag) => !tagSet.has(tag));
+      });
     } else {
       const categoryTags = mainCategories[selectedCategory].tags;
       if (categoryTags.length > 0) {
@@ -395,6 +411,10 @@ export default function Archive() {
                     {parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}{' '}
                     min
                   </MetaItem>
+                  {recipe.tags &&
+                    recipe.tags.map((tag) => (
+                      <MetaItem key={tag}>{tag}</MetaItem>
+                    ))}
                 </RecipeMeta>
 
                 {recipe.description && (

@@ -84,7 +84,7 @@ export default function App() {
     <AppContainer>
       <Header>
         <Brand>
-          Pinch of Melah{' '}
+          🤌 Pinch of Melah{' '}
           {/* <Construction>Page under construction 🚧</Construction> */}
         </Brand>
       </Header>
