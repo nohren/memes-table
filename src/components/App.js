@@ -84,7 +84,7 @@ export default function App() {
     <AppContainer>
       <Header>
         <Brand>
-          Voices of Mimouna{' '}
+          Pinch of Melah{' '}
           {/* <Construction>Page under construction 🚧</Construction> */}
         </Brand>
       </Header>
