@@ -8,20 +8,19 @@ export default function About(props) {
         This is our story. From Rue Assouli, in the Melah of Rabat, to Sderot
         Israel, to Alameda, our family has journeyed halfway across the world in
         search of a better life. We carry with us traditions that span
-        centuries. Pinch of Melah is our way of preserving the aromas of our
-        mothers’ and grandmothers’ kitchens. It is a living family archive
-        preserving the flavors, stories, and rituals of Moroccan-Jewish cuisine.
-        With each recipe will come a voice, a memory, and a gentle guide at your
-        side.
+        centuries. Pinch of Melah is a way of preserving the heritage of our
+        mothers’ and grandmothers’ kitchens. It is a living family archive full
+        of flavors, stories, and rituals of Moroccan-Jewish cuisine. With each
+        recipe will come a voice, a memory, and a gentle guide at your side.
       </TextContainer>
       <TextContainer>
         A Third Culture Kid (TCK) is a person who has spent a significant part
         of their developmental years in a culture different from their parents'
         passport country, creating their own unique "third" culture. TCK has
-        defined the experience of our first generation and lesser so the second
-        generation. As this trend continues, we provide a guide that is
-        available for the following generations to connect with their roots and
-        heritage.
+        defined the experience of our first generation parents and lesser but
+        still present part on the second generation. As this trend continues
+        into the 3rd generation, we provide a guide that is always available for
+        all who seek to find their living breathing roots.
       </TextContainer>
       <TextContainer>
         In capturing our culinary traditions, we also embrace open hearts, and
