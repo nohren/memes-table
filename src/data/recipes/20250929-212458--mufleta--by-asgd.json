@@ -1,9 +1,9 @@
 {
   "id": "recipe_2025-09-29T21:24:58Z_mufleta_asgd",
-  "title": "asdg",
+  "title": "🍝 spaghetti",
   "dish": "Mufleta",
-  "description": "ag",
-  "origin": "ags",
+  "description": "some spaghetti",
+  "origin": "italy",
   "image": {
     "source_url": "https://lh3.googleusercontent.com/d/1QgwSd1DtjWY9Xf2LvbsUIXX5RCCAsdvH",
     "alt": "asdg",
@@ -18,12 +18,12 @@
     "mimouna"
   ],
   "ingredients": [
-    "asg"
+    "1/2 beef"
   ],
   "steps": [
-    "asdg"
+    "boil"
   ],
   "notes": "",
-  "author": "asgd",
+  "author": "o",
   "created_at": "2025-09-29T21:24:58Z"
 }
