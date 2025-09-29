@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import recipes from '../store/dummy_recipes.json';
+import recipes from '../store/recipes';
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';

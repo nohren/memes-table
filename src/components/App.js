@@ -85,7 +85,7 @@ export default function App() {
       <Header>
         <Brand>
           Voices of Mimouna{' '}
-          <Construction>Page under construction 🚧</Construction>
+          {/* <Construction>Page under construction 🚧</Construction> */}
         </Brand>
       </Header>
       <NavBar>
