@@ -29,6 +29,19 @@ jobs:
           echo 'TAGS_JSON=${{ toJson(github.event.client_payload.recipe.tags) }}' >> $GITHUB_ENV
           echo "NOTES=${{ github.event.client_payload.recipe.notes }}" >> $GITHUB_ENV
           echo "IMAGE_URL=${{ github.event.client_payload.recipe.image_url }}" >> $GITHUB_ENV
+          {
+            echo 'INGREDIENTS_JSON<<EOF'
+            printf '%s\n' '${{ toJson(github.event.client_payload.recipe.ingredients) }}'
+            echo 'EOF'
+            
+            echo 'STEPS_JSON<<EOF'
+            printf '%s\n' '${{ toJson(github.event.client_payload.recipe.steps) }}'
+            echo 'EOF'
+            
+            echo 'TAGS_JSON<<EOF'
+            printf '%s\n' '${{ toJson(github.event.client_payload.recipe.tags) }}'
+            echo 'EOF'
+          } >> "$GITHUB_ENV"
 
       - name: Slug + filename
         id: n
