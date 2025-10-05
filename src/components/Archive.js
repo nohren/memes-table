@@ -251,7 +251,7 @@ export default function Archive() {
 
     const searchFields = [
       recipe.dish,
-      // recipe.title,
+      recipe.title,
       // recipe.description || '',
       // recipe.author || '',
       // recipe.ingredients?.join(' ') || '',
