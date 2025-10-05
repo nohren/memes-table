@@ -4,7 +4,7 @@ import recipes from '../store/recipes'; // live recipes, uncomment dummy_recipes
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { debugLog, parseTime, debugDidMount } from '../utils/utilities';
+import { debugLog, parseTime, debugDidMount, levenshteinInOrderSingle, levenshteinInOrderMulti } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
 import SearchContainer from './SearchContainer';
 
@@ -238,7 +238,7 @@ export default function Archive() {
 
   // Simple fuzzy search function
   // TODO: implement fuzzy search with levenshtein distance
-  const fuzzySearch = (query, text) => {
+   const fuzzySearch = (query, text) => {
     if (!query) return true;
     const searchTerm = query.toLowerCase();
     const searchText = text.toLowerCase();
@@ -262,44 +262,18 @@ export default function Archive() {
 
     // Enhanced fuzzy matching with word-level tolerance
     const fuzzyMatchWithWords = (query, text) => {
+      console.log('query', query, 'text', text);
       const queryWords = query.split(/\s+/).filter(word => word.length > 0);
       const textWords = text.split(/\s+/).filter(word => word.length > 0);
+      const tolerance = 0.5;
       
       // If query has only one word, use character-level matching
       if (queryWords.length === 1) {
-        const levenshteinInOrder = (queryWord, text) => {
-          const m = queryWord.length;
-          const n = text.length;
-          
-          const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(Infinity));
-          
-          for (let j = 0; j <= n; j++) {
-            dp[0][j] = 0;
-          }
-          
-          for (let i = 1; i <= m; i++) {
-            for (let j = 1; j <= n; j++) {
-              if (queryWord[i - 1] === text[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1];
-              } else {
-                dp[i][j] = Math.min(
-                  dp[i][j - 1] + 1,
-                  dp[i - 1][j] + 1
-                );
-              }
-            }
-          }
-          
-          let minDistance = Infinity;
-          for (let j = 0; j <= n; j++) {
-            minDistance = Math.min(minDistance, dp[m][j]);
-          }
-          
-          return minDistance;
-        };
         
-        const maxDistance = Math.floor(queryWords[0].length * 0.3);
-        const distance = levenshteinInOrder(queryWords[0], text);
+        const maxDistance = Math.floor(queryWords[0].length * tolerance);
+        const distance = levenshteinInOrderSingle(queryWords[0], text);
+
+        console.log('distance', distance, 'maxDistance', maxDistance);
         return distance <= maxDistance;
       }
       
@@ -312,39 +286,11 @@ export default function Archive() {
         const textWord = textWords[i];
         
         // Check if this text word matches the current query word (with character-level tolerance)
-        const levenshteinInOrder = (qWord, tWord) => {
-          const m = qWord.length;
-          const n = tWord.length;
-          
-          const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(Infinity));
-          
-          for (let j = 0; j <= n; j++) {
-            dp[0][j] = 0;
-          }
-          
-          for (let i = 1; i <= m; i++) {
-            for (let j = 1; j <= n; j++) {
-              if (qWord[i - 1] === tWord[j - 1]) {
-                dp[i][j] = dp[i - 1][j - 1];
-              } else {
-                dp[i][j] = Math.min(
-                  dp[i][j - 1] + 1,
-                  dp[i - 1][j] + 1
-                );
-              }
-            }
-          }
-          
-          let minDistance = Infinity;
-          for (let j = 0; j <= n; j++) {
-            minDistance = Math.min(minDistance, dp[m][j]);
-          }
-          
-          return minDistance;
-        };
         
-        const maxWordDistance = Math.floor(queryWord.length * 0.3);
-        const wordDistance = levenshteinInOrder(queryWord, textWord);
+        
+        
+        const maxWordDistance = Math.floor(queryWord.length * tolerance);
+        const wordDistance = levenshteinInOrderMulti(queryWord, textWord);
         
         if (wordDistance <= maxWordDistance) {
           matchedWords++;
@@ -364,11 +310,12 @@ export default function Archive() {
     if (!query) return true;
 
     const searchFields = [
-      recipe.title,
-      recipe.description || '',
-      recipe.author || '',
-      recipe.ingredients?.join(' ') || '',
-      `${parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}`,
+      recipe.dish,
+      // recipe.title,
+      // recipe.description || '',
+      // recipe.author || '',
+      // recipe.ingredients?.join(' ') || '',
+      // `${parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}`,
     ];
 
     return searchFields.some((field) => fuzzySearch(query, field));

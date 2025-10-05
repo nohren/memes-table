@@ -93,3 +93,64 @@ export function formatSelectedCategory(selectedCategory, selectedHoliday) {
     return selectedCategory.replace('_', ' ');
   }
 }
+export const levenshteinInOrderSingle = (queryWord, text) => {
+  const m = queryWord.length;
+  const n = text.length;
+  
+  const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(Infinity));
+  
+  for (let j = 0; j <= n; j++) {
+    dp[0][j] = 0;
+  }
+  
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (queryWord[i - 1] === text[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = Math.min(
+          dp[i][j - 1] + 1,
+          dp[i - 1][j] + 1
+        );
+      }
+    }
+  }
+  
+  let minDistance = Infinity;
+  for (let j = 0; j <= n; j++) {
+    minDistance = Math.min(minDistance, dp[m][j]);
+  }
+  
+  return minDistance;
+};
+
+export const levenshteinInOrderMulti = (qWord, tWord) => {
+  const m = qWord.length;
+  const n = tWord.length;
+  
+  const dp = Array(m + 1).fill().map(() => Array(n + 1).fill(Infinity));
+  
+  for (let j = 0; j <= n; j++) {
+    dp[0][j] = 0;
+  }
+  
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (qWord[i - 1] === tWord[j - 1]) {
+        dp[i][j] = dp[i - 1][j - 1];
+      } else {
+        dp[i][j] = Math.min(
+          dp[i][j - 1] + 1,
+          dp[i - 1][j] + 1
+        );
+      }
+    }
+  }
+  
+  let minDistance = Infinity;
+  for (let j = 0; j <= n; j++) {
+    minDistance = Math.min(minDistance, dp[m][j]);
+  }
+  
+  return minDistance;
+};
