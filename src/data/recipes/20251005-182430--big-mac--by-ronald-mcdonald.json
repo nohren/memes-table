@@ -1,0 +1,27 @@
+{
+  "id": "recipe_2025-10-05T18:24:30Z_big-mac_ronald-mcdonald",
+  "title": "Big Mac",
+  "dish": "Big Mac",
+  "description": "sdgas",
+  "origin": "Murica",
+  "image": {
+    "source_url": "https://lh3.googleusercontent.com/d/1c9Ke96aj-VJaWa7u2caofczCisjS_c99",
+    "alt": "Big Mac",
+    "repo_path": null
+  },
+  "prep_time": "0:05:00",
+  "cook_time": "0:05:00",
+  "servings": 6,
+  "tags": [
+    "fast food"
+  ],
+  "ingredients": [
+    "fat"
+  ],
+  "steps": [
+    "asdgas"
+  ],
+  "notes": "Hhgh",
+  "author": "Ronald Mcdonald",
+  "created_at": "2025-10-05T18:24:30Z"
+}
