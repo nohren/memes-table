@@ -13,7 +13,7 @@
     "prep_time": "1 hour",
     "cook_time": "20 minutes",
     "servings": 12,
-    "tags": ["bread", "mimouna", "traditional"],
+    "tags": ["bread", "mimouna", "traditional", "passover"],
     "ingredients": [
       "1 kg flour",
       "2 tbsp sugar",
@@ -109,7 +109,7 @@
     "prep_time": "45 minutes",
     "cook_time": "1 hour",
     "servings": 10,
-    "tags": ["main", "shabbat", "traditional"],
+    "tags": ["main", "shabbat", "traditional", "rosh hashana", "hanukah"],
     "ingredients": [
       "1 whole chicken",
       "2 cups couscous",
@@ -169,7 +169,7 @@
     "prep_time": "30 minutes",
     "cook_time": "2 hours",
     "servings": 8,
-    "tags": ["main", "holiday", "tagine"],
+    "tags": ["main", "holiday", "tagine", "rosh hashana"],
     "ingredients": [
       "1kg beef",
       "2 cups prunes",
@@ -229,7 +229,7 @@
     "prep_time": "15 minutes",
     "cook_time": "40 minutes",
     "servings": 6,
-    "tags": ["fish", "shabbat", "spicy"],
+    "tags": ["fish", "shabbat", "spicy", "rosh hashana", "passover"],
     "ingredients": [
       "6 fish fillets",
       "Tomatoes, garlic, paprika, cumin",
@@ -258,7 +258,7 @@
     "prep_time": "2 hours",
     "cook_time": "30 minutes",
     "servings": 8,
-    "tags": ["bread", "shabbat", "sweet"],
+    "tags": ["bread", "shabbat", "sweet", "shabbat", "rosh hashana"],
     "ingredients": [
       "1kg flour",
       "1/2 cup sugar",
@@ -352,7 +352,7 @@
     "prep_time": "1h 30m",
     "cook_time": "30 minutes",
     "servings": 20,
-    "tags": ["dessert", "ramadan", "honey"],
+    "tags": ["dessert", "ramadan", "honey", "hanukah", "rosh hashana"],
     "ingredients": [
       "1kg flour",
       "1 cup sesame seeds",
@@ -384,7 +384,7 @@
     "prep_time": "1h",
     "cook_time": "1h 15m",
     "servings": 8,
-    "tags": ["main", "holiday", "pastry"],
+    "tags": ["main", "holiday", "pastry", "shabbat", "hanukah"],
     "ingredients": [
       "1 whole chicken",
       "10 sheets warqa or filo pastry",

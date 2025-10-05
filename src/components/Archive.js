@@ -4,7 +4,7 @@ import recipes from '../store/recipes'; // live recipes, uncomment dummy_recipes
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { debugLog, parseTime, debugDidMount } from '../utils/utilities';
+import { debugLog, parseTime, debugDidMount, fuzzyMatchWithWords } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
 import SearchContainer from './SearchContainer';
 
@@ -196,6 +196,7 @@ export default function Archive() {
     all: { label: 'All Recipes', tags: [] },
     breakfast: { label: 'Breakfast', tags: ['breakfast'] },
     main_entrees: { label: 'Main Entrees', tags: ['main'] },
+    quick: { label: 'Quick', tags: ['quick'] },
     soups: { label: 'Soups', tags: ['soup'] },
     breads: { label: 'Breads', tags: ['bread'] },
     sides: { label: 'Sides', tags: ['side', 'salad', 'starter'] },
@@ -237,26 +238,11 @@ export default function Archive() {
 
   // Simple fuzzy search function
   // TODO: implement fuzzy search with levenshtein distance
-  const fuzzySearch = (query, text) => {
+   const fuzzySearch = (query, text) => {
     if (!query) return true;
     const searchTerm = query.toLowerCase();
     const searchText = text.toLowerCase();
-
-    // Exact match gets highest priority
-    if (searchText.includes(searchTerm)) return true;
-
-    // // Fuzzy matching - check if all characters exist in order
-    // let searchIndex = 0;
-    // for (
-    //   let i = 0;
-    //   i < searchText.length && searchIndex < searchTerm.length;
-    //   i++
-    // ) {
-    //   if (searchText[i] === searchTerm[searchIndex]) {
-    //     searchIndex++;
-    //   }
-    // }
-    // return searchIndex === searchTerm.length;
+    return fuzzyMatchWithWords(searchTerm, searchText);
   };
 
   // Search in recipe fields
@@ -264,14 +250,24 @@ export default function Archive() {
     if (!query) return true;
 
     const searchFields = [
+      recipe.dish,
       recipe.title,
-      recipe.description || '',
-      recipe.author || '',
-      recipe.ingredients?.join(' ') || '',
-      `${parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}`,
+      // recipe.description || '',
+      // recipe.author || '',
+      // recipe.ingredients?.join(' ') || '',
+      // `${parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}`,
     ];
 
-    return searchFields.some((field) => fuzzySearch(query, field));
+    const distances = searchFields.map((field) => {
+      const res = fuzzySearch(query, field)
+      let out;
+      if (res.pass) {
+        out = res.distance;
+      } else out = Infinity
+      return out;
+    });
+    const minDistance = Math.min(...distances);
+    return minDistance !== Infinity ? minDistance : null;
   };
 
   // Filter recipes based on selected category and search
@@ -299,9 +295,17 @@ export default function Archive() {
 
     // Apply search filter
     if (searchQuery.trim()) {
-      filtered = filtered.filter((recipe) =>
-        searchInRecipe(recipe, searchQuery)
-      );
+      // console.log('filtered before', filtered);
+      filtered = filtered.reduce((acc,recipe) => {
+        const res = searchInRecipe(recipe, searchQuery) // returns distance or null
+        if (res !== null) {
+          // console.log('recipe: ', recipe.dish, 'd: ',res)
+          acc.push({ recipe, d:res})
+        }
+        return acc;
+      }, []).sort((a,b) =>
+        a.d - b.d).map((item) => item.recipe);
+      // console.log('filtered after', filtered);
     }
 
     return filtered;
@@ -427,3 +431,7 @@ export default function Archive() {
     </ArchiveContainer>
   );
 }
+
+// TODO:
+// create "quick" category filter
+// add "holidays" to tags in dummy recipe json
