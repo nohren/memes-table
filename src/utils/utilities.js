@@ -154,3 +154,45 @@ export const levenshteinInOrderMulti = (qWord, tWord) => {
   
   return minDistance;
 };
+
+// Enhanced fuzzy matching with word-level tolerance
+export const fuzzyMatchWithWords = (query, text) => {
+  // console.log('query', query, 'text', text);
+  const queryWords = query.split(/\s+/).filter(word => word.length > 0);
+  const textWords = text.split(/\s+/).filter(word => word.length > 0);
+  const tolerance = 0.5;
+  
+  // If query has only one word, use character-level matching
+  if (queryWords.length === 1) {
+    
+    const maxDistance = Math.floor(queryWords[0].length * tolerance);
+    const distance = levenshteinInOrderSingle(queryWords[0], text);
+
+    // console.log('distance', distance, 'maxDistance', maxDistance);
+    return { pass:distance <= maxDistance, distance};
+  }
+  
+  // For multiple words, check if query words appear in order with word-level gaps allowed
+  let queryWordIndex = 0;
+  let matchedWords = 0;
+  
+  for (let i = 0; i < textWords.length && queryWordIndex < queryWords.length; i++) {
+    const queryWord = queryWords[queryWordIndex];
+    const textWord = textWords[i];
+    
+    // Check if this text word matches the current query word (with character-level tolerance)
+    
+    
+    
+    const maxWordDistance = Math.floor(queryWord.length * tolerance);
+    const wordDistance = levenshteinInOrderMulti(queryWord, textWord);
+    
+    if (wordDistance <= maxWordDistance) {
+      matchedWords++;
+      queryWordIndex++; // Move to next query word
+    }
+  }
+  
+  // Allow missing one word - if we matched all words or all but one
+  return { pass:matchedWords >= queryWords.length - 1, distance:matchedWords };
+};

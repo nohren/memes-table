@@ -4,7 +4,7 @@ import recipes from '../store/recipes'; // live recipes, uncomment dummy_recipes
 import { TextContainer } from './../utils/sharedCSS';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { debugLog, parseTime, debugDidMount, levenshteinInOrderSingle, levenshteinInOrderMulti } from '../utils/utilities';
+import { debugLog, parseTime, debugDidMount, fuzzyMatchWithWords } from '../utils/utilities';
 import { useLocation } from 'react-router-dom';
 import SearchContainer from './SearchContainer';
 
@@ -242,66 +242,6 @@ export default function Archive() {
     if (!query) return true;
     const searchTerm = query.toLowerCase();
     const searchText = text.toLowerCase();
-
-    // Exact match gets highest priority
-    //if (searchText.includes(searchTerm)) return true;
-
-        // // Fuzzy matching - all characters must exist in order 
-    //    let searchIndex = 0;
-    //    for (
-    //     let i = 0;
-    //     i < searchText.length && searchIndex < searchTerm.length;
-    //     i++
-    //   ) {
-    //     if (searchText[i] === searchTerm[searchIndex]) {
-    //       searchIndex++;
-    //     }
-    //   }
-    //  return searchIndex === searchTerm.length;
-    // };
-
-    // Enhanced fuzzy matching with word-level tolerance
-    const fuzzyMatchWithWords = (query, text) => {
-      console.log('query', query, 'text', text);
-      const queryWords = query.split(/\s+/).filter(word => word.length > 0);
-      const textWords = text.split(/\s+/).filter(word => word.length > 0);
-      const tolerance = 0.5;
-      
-      // If query has only one word, use character-level matching
-      if (queryWords.length === 1) {
-        
-        const maxDistance = Math.floor(queryWords[0].length * tolerance);
-        const distance = levenshteinInOrderSingle(queryWords[0], text);
-
-        console.log('distance', distance, 'maxDistance', maxDistance);
-        return distance <= maxDistance;
-      }
-      
-      // For multiple words, check if query words appear in order with word-level gaps allowed
-      let queryWordIndex = 0;
-      let matchedWords = 0;
-      
-      for (let i = 0; i < textWords.length && queryWordIndex < queryWords.length; i++) {
-        const queryWord = queryWords[queryWordIndex];
-        const textWord = textWords[i];
-        
-        // Check if this text word matches the current query word (with character-level tolerance)
-        
-        
-        
-        const maxWordDistance = Math.floor(queryWord.length * tolerance);
-        const wordDistance = levenshteinInOrderMulti(queryWord, textWord);
-        
-        if (wordDistance <= maxWordDistance) {
-          matchedWords++;
-          queryWordIndex++; // Move to next query word
-        }
-      }
-      
-      // Allow missing one word - if we matched all words or all but one
-      return matchedWords >= queryWords.length - 1;
-    };
-    
     return fuzzyMatchWithWords(searchTerm, searchText);
   };
 
@@ -318,7 +258,16 @@ export default function Archive() {
       // `${parseTime(recipe.prep_time) + parseTime(recipe.cook_time)}`,
     ];
 
-    return searchFields.some((field) => fuzzySearch(query, field));
+    const distances = searchFields.map((field) => {
+      const res = fuzzySearch(query, field)
+      let out;
+      if (res.pass) {
+        out = res.distance;
+      } else out = Infinity
+      return out;
+    });
+    const minDistance = Math.min(...distances);
+    return minDistance !== Infinity ? minDistance : null;
   };
 
   // Filter recipes based on selected category and search
@@ -346,9 +295,17 @@ export default function Archive() {
 
     // Apply search filter
     if (searchQuery.trim()) {
-      filtered = filtered.filter((recipe) =>
-        searchInRecipe(recipe, searchQuery)
-      );
+      // console.log('filtered before', filtered);
+      filtered = filtered.reduce((acc,recipe) => {
+        const res = searchInRecipe(recipe, searchQuery) // returns distance or null
+        if (res !== null) {
+          // console.log('recipe: ', recipe.dish, 'd: ',res)
+          acc.push({ recipe, d:res})
+        }
+        return acc;
+      }, []).sort((a,b) =>
+        a.d - b.d).map((item) => item.recipe);
+      // console.log('filtered after', filtered);
     }
 
     return filtered;
